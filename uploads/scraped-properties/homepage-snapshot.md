@@ -1,0 +1,543 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Quality estates for sale at the Balaton Lake and in Hévíz" [level=1] [ref=e5]:
+        - link "Quality estates for sale at the Balaton Lake and in Hévíz" [ref=e6] [cursor=pointer]:
+          - /url: https://propertybalaton.co.uk/
+          - img "Quality estates for sale at the Balaton Lake and in Hévíz" [ref=e7]
+      - complementary [ref=e8]:
+        - complementary [ref=e9]:
+          - generic [ref=e11]:
+            - text: "Jump to the code:"
+            - textbox "Jump to the code:" [ref=e12]
+        - complementary [ref=e13]:
+          - list [ref=e15]:
+            - listitem [ref=e16]:
+              - link "Map" [ref=e17] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/map
+            - listitem [ref=e18]:
+              - link "Contact" [ref=e19] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/contact
+        - complementary:
+          - list [ref=e20] [cursor=pointer]:
+            - listitem [ref=e21]:
+              - link "hu" [ref=e22]:
+                - /url: https://balatoningatlankozvetito.hu
+            - listitem [ref=e23]:
+              - link "de" [ref=e24]:
+                - /url: https://ungarnimmobilienangebot.de
+            - listitem [ref=e25]:
+              - text: 
+              - link "en" [ref=e26]:
+                - /url: https://propertybalaton.co.uk
+            - listitem [ref=e27]:
+              - link "ru" [ref=e28]:
+                - /url: https://vengrija-dom.ru
+            - listitem [ref=e29]:
+              - link "be" [ref=e30]:
+                - /url: https://hongarijehuis.be
+        - complementary [ref=e31]:
+          - paragraph [ref=e33]:
+            - link "+36 83 511 595" [ref=e34] [cursor=pointer]:
+              - /url: tel:+3683511595
+            - link "+36 70 701 8360" [ref=e35] [cursor=pointer]:
+              - /url: tel:+36707018360
+    - navigation [ref=e36]:
+      - generic [ref=e37]:
+        - heading "Main menu" [level=3] [ref=e38]
+        - link "Skip to primary content" [ref=e39] [cursor=pointer]:
+          - /url: "#content"
+        - link "Skip to secondary content" [ref=e40] [cursor=pointer]:
+          - /url: "#secondary"
+        - generic:
+          - list:
+            - listitem [ref=e41]:
+              - link "Real estate finder" [ref=e42] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/real-estates-for-sale
+            - listitem [ref=e43]:
+              - link "Top 10 real estates" [ref=e44] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale
+            - listitem [ref=e45]:
+              - link "Why Hungary?" [ref=e46] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/why-hungary
+            - listitem [ref=e47]:
+              - link "About us" [ref=e48] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/about-us
+            - listitem [ref=e49]:
+              - link "Favourites" [ref=e50] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/favourites
+  - generic: Menu
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - button "Previous" [ref=e54] [cursor=pointer]
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - img [ref=e336]
+          - generic [ref=e59]:
+            - generic [ref=e60]: Family House - 4259
+            - generic [ref=e61]: Newly built one-storey detached house in the settlement of Gyenesdiás on the northern shore of Lake Balaton in silent location is for sale
+        - generic [ref=e62]:
+          - img "Dia 3" [ref=e337]
+          - generic [ref=e64]:
+            - generic [ref=e65]: Family House - 4344
+            - generic [ref=e66]: Quality one-storey detached house silently located in Cserszegtomaj, in a closed residential park.
+        - generic [ref=e67]:
+          - img [ref=e68]
+          - generic [ref=e69]:
+            - generic [ref=e70]: Family House- 4399
+            - generic [ref=e71]: Stunningly located villa near forest in Vonyarcvashegy is for sale.
+        - generic [ref=e72]:
+          - img [ref=e73]
+          - generic [ref=e74]:
+            - generic [ref=e75]: Family House - 4114
+            - generic [ref=e76]: Nicely located newly built detached house by the northern shore of Lake Balaton.
+      - button "Next" [ref=e77] [cursor=pointer]
+    - generic [ref=e78]:
+      - main [ref=e79]:
+        - article [ref=e80]:
+          - generic [ref=e81]:
+            - heading "Highlighted estates" [level=2] [ref=e83]
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - link "”Our customers will be our friends” About us" [ref=e88] [cursor=pointer]:
+                    - /url: /about-us
+                    - text: ”Our customers will be our friends”
+                    - img "About us" [ref=e89]
+                  - heading "About us" [level=3] [ref=e90]
+                  - list [ref=e91]:
+                    - listitem [ref=e92]:  25 years of professional experience
+                    - listitem [ref=e93]:  Exclusive office on the Main Square of Keszthely
+                    - listitem [ref=e94]:  Comprehensive local knowledge, since we are locals
+                    - listitem [ref=e95]:  Trained real estate appraisers
+                    - listitem [ref=e96]:  Family business, personal contact and discretion is of major importance for us
+                    - listitem [ref=e97]: " We speak 5 languages: Hungarian, English, German, Russian and Flemish"
+                    - listitem [ref=e98]:  University degree
+                - generic [ref=e99]:
+                  - heading "Newsletter" [level=3] [ref=e100]
+                  - paragraph [ref=e101]: To get the latest news, please subscribe to our Newsletter!
+                  - generic [ref=e103]:
+                    - textbox "Name" [ref=e104]
+                    - textbox "E-mail" [ref=e105]
+                    - generic [ref=e106]:
+                      - text: I have read and accept the
+                      - link "Data management policy" [ref=e107] [cursor=pointer]:
+                        - /url: https://propertybalaton.co.uk/privacy-policy
+                    - button "Subscribe" [ref=e108] [cursor=pointer]
+              - list [ref=e109]:
+                - listitem [ref=e110]:
+                  - generic [ref=e111]:
+                    - link "New build Family House - 4125" [ref=e112] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4125
+                      - generic: New build
+                      - img "Family House - 4125" [ref=e114]
+                    - generic "Add to favorites" [ref=e115] [cursor=pointer]: 
+                    - link "Family House - 4125" [ref=e116] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4125
+                      - generic [ref=e117]: Family House - 4125
+                    - generic [ref=e119]: "Code number: 4125"
+                    - generic [ref=e120]: 1.300.000 €
+                    - paragraph [ref=e122]: Newly built detached house in Gyenesdiás, located in gorgeous nature is for sale
+                  - generic [ref=e123]:
+                    - generic [ref=e124]:
+                      - text: 
+                      - generic [ref=e125]: "5"
+                      - text: rooms
+                    - generic [ref=e126]:
+                      - text: 
+                      - generic [ref=e127]: "4"
+                      - text: bedrooms
+                    - generic [ref=e128]:
+                      - text: 
+                      - generic [ref=e129]: "3"
+                      - text: bathrooms
+                    - generic [ref=e130]:
+                      - text: 
+                      - generic [ref=e131]: 1417 m²
+                      - text: plot size
+                    - generic [ref=e132]:
+                      - text: 
+                      - generic [ref=e133]: 190 m²
+                      - text: living area
+                - listitem [ref=e134]:
+                  - generic [ref=e135]:
+                    - link "Family House - 4339" [ref=e136] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4339
+                      - img "Family House - 4339" [ref=e138]
+                    - generic "Add to favorites" [ref=e139] [cursor=pointer]: 
+                    - link "Family House - 4339" [ref=e140] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4339
+                      - generic [ref=e141]: Family House - 4339
+                    - generic [ref=e143]: "Code number: 4339"
+                    - generic [ref=e144]: 694.444 €
+                    - paragraph [ref=e146]: Stunningly located villa near forest by the northern shore of Lake Balaton is for sale
+                  - generic [ref=e147]:
+                    - generic [ref=e148]:
+                      - text: 
+                      - generic [ref=e149]: "7"
+                      - text: rooms
+                    - generic [ref=e150]:
+                      - text: 
+                      - generic [ref=e151]: "5"
+                      - text: bedrooms
+                    - generic [ref=e152]:
+                      - text: 
+                      - generic [ref=e153]: "5"
+                      - text: bathrooms
+                    - generic [ref=e154]:
+                      - text: 
+                      - generic [ref=e155]: 1700 m²
+                      - text: plot size
+                    - generic [ref=e156]:
+                      - text: 
+                      - generic [ref=e157]: 357 m²
+                      - text: living area
+                - listitem [ref=e158]:
+                  - generic [ref=e159]:
+                    - link "Family House - 4380" [ref=e160] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4380
+                      - img "Family House - 4380" [ref=e162]
+                    - generic "Add to favorites" [ref=e163] [cursor=pointer]: 
+                    - link "Family House - 4380" [ref=e164] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4380
+                      - generic [ref=e165]: Family House - 4380
+                    - generic [ref=e167]: "Code number: 4380"
+                    - generic [ref=e168]: 380.000 €
+                    - paragraph [ref=e170]: Detached house located in the spa town Hévíz in valuable area refurbished in 2015 is for sale
+                  - generic [ref=e171]:
+                    - generic [ref=e172]:
+                      - text: 
+                      - generic [ref=e173]: "5"
+                      - text: rooms
+                    - generic [ref=e174]:
+                      - text: 
+                      - generic [ref=e175]: "4"
+                      - text: bedrooms
+                    - generic [ref=e176]:
+                      - text: 
+                      - generic [ref=e177]: "2"
+                      - text: bathrooms
+                    - generic [ref=e178]:
+                      - text: 
+                      - generic [ref=e179]: 800 m²
+                      - text: plot size
+                    - generic [ref=e180]:
+                      - text: 
+                      - generic [ref=e181]: 153 m²
+                      - text: living area
+                - listitem [ref=e182]:
+                  - generic [ref=e183]:
+                    - link "New build Family House - 4259" [ref=e184] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4259
+                      - generic: New build
+                      - img "Family House - 4259" [ref=e186]
+                    - generic "Add to favorites" [ref=e187] [cursor=pointer]: 
+                    - link "Family House - 4259" [ref=e188] [cursor=pointer]:
+                      - /url: https://propertybalaton.co.uk/family-house-for-sale/family-house-for-sale-4259
+                      - generic [ref=e189]: Family House - 4259
+                    - generic [ref=e191]: "Code number: 4259"
+                    - generic [ref=e192]: 611.111 €
+                    - paragraph [ref=e194]: Newly built one-storey detached house in the settlement of Gyenesdiás on the northern shore of the Lake Balaton in silent location is for sale
+                  - generic [ref=e195]:
+                    - generic [ref=e196]:
+                      - text: 
+                      - generic [ref=e197]: "4"
+                      - text: rooms
+                    - generic [ref=e198]:
+                      - text: 
+                      - generic [ref=e199]: "3"
+                      - text: bedrooms
+                    - generic [ref=e200]:
+                      - text: 
+                      - generic [ref=e201]: "2"
+                      - text: bathrooms
+                    - generic [ref=e202]:
+                      - text: 
+                      - generic [ref=e203]: 945 m²
+                      - text: plot size
+                    - generic [ref=e204]:
+                      - text: 
+                      - generic [ref=e205]: 150 m²
+                      - text: living area
+            - generic [ref=e206]:
+              - text: “We would like to express our sincere thanks to the team at Capital 99 for their great effort and professional manner during the process of purchasing our holiday home. A couple of years ago we decided to purchase a holiday home in the beautiful Balaton region
+              - link "..." [ref=e207] [cursor=pointer]:
+                - /url: /customer-opinion
+              - text: ”
+              - generic [ref=e208]: Sándor Nagy
+            - heading "Top 10 Properties" [level=2] [ref=e210]
+            - generic [ref=e211]:
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/balatoni-panoramas-elado-ingatlanok.jpg_ALT View over the Lake" [ref=e212] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/view-on-lake-balaton
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/balatoni-panoramas-elado-ingatlanok.jpg_ALT" [ref=e213]
+                - generic [ref=e214]: View over the Lake
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/balaton-part-kozeli-elado-ingatlanok.jpg_ALT Lake side Property" [ref=e215] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/near-the-shore-of-lake-balaton
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/balaton-part-kozeli-elado-ingatlanok.jpg_ALT" [ref=e216]
+                - generic [ref=e217]: Lake side Property
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/energiatakarekos-elado-ingatlanok.jpg_ALT Energy saving" [ref=e218] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/energy-saving
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/energiatakarekos-elado-ingatlanok.jpg_ALT" [ref=e219]
+                - generic [ref=e220]: Energy saving
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/luxus-elado-hazak.jpg_ALT Balaton luxury homes" [ref=e221] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/luxury-house
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/luxus-elado-hazak.jpg_ALT" [ref=e222]
+                - generic [ref=e223]: Balaton luxury homes
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/luxus-elado-villak.jpg_ALT Balaton luxury villas" [ref=e224] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/luxury-mansion
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/luxus-elado-villak.jpg_ALT" [ref=e225]
+                - generic [ref=e226]: Balaton luxury villas
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/nagy-kertes-elado-csaladi-hazak.jpg_ALT Family house with big gar…" [ref=e227] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/family-house-with-big-garden
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/nagy-kertes-elado-csaladi-hazak.jpg_ALT" [ref=e228]
+                - generic [ref=e229]: Family house with big gar…
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/termalfurdo-kozeli-elado-ingatlanok.jpg_ALT Near the thermal bath" [ref=e230] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/near-the-thermal-bath
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/termalfurdo-kozeli-elado-ingatlanok.jpg_ALT" [ref=e231]
+                - generic [ref=e232]: Near the thermal bath
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/uszomedences-elado-ingatlanok.jpg_ALT Balaton homes with pool" [ref=e233] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/swimming-pool
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/uszomedences-elado-ingatlanok.jpg_ALT" [ref=e234]
+                - generic [ref=e235]: Balaton homes with pool
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/uj-epitesu-csaladi-elado-hazak.jpg_ALT Balaton homes as new" [ref=e236] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/new-family-house
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/uj-epitesu-csaladi-elado-hazak.jpg_ALT" [ref=e237]
+                - generic [ref=e238]: Balaton homes as new
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/villa-osfas-kornyezetben-elado-ingatlanok.jpg_ALT Balaton villas in old-tre…" [ref=e239] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/mansion-with-ancient-trees
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/villa-osfas-kornyezetben-elado-ingatlanok.jpg_ALT" [ref=e240]
+                - generic [ref=e241]: Balaton villas in old-tre…
+              - link "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/zoldovezeti-csaladi-elado-hazak.jpg_ALT Family house in green belt" [ref=e242] [cursor=pointer]:
+                - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/family-house-in-green-belt
+                - img "//balatoningatlankozvetito.hu/wp-content/uploads/2016/12/zoldovezeti-csaladi-elado-hazak.jpg_ALT" [ref=e243]
+                - generic [ref=e244]: Family house in green belt
+      - complementary [ref=e245]:
+        - complementary [ref=e246]:
+          - heading "SALES PRICE" [level=3] [ref=e247]
+          - generic [ref=e248]:
+            - generic [ref=e253]: 1.390 €
+            - generic [ref=e254]: 3.600.000 €
+        - complementary [ref=e255]:
+          - heading "Type of Property" [level=3] [ref=e256]
+          - list [ref=e257]:
+            - listitem [ref=e258]:
+              - generic "family house" [ref=e259] [cursor=pointer]:
+                - text: family house
+                - generic [ref=e260]: "87"
+            - listitem [ref=e261]:
+              - generic "flat, apartment" [ref=e262] [cursor=pointer]:
+                - text: flat, apartment
+                - generic [ref=e263]: "15"
+            - listitem [ref=e264]:
+              - generic "building site" [ref=e265] [cursor=pointer]:
+                - text: building site
+                - generic [ref=e266]: "11"
+            - listitem [ref=e267]:
+              - generic "hotel" [ref=e268] [cursor=pointer]:
+                - text: hotel
+                - generic [ref=e269]: "2"
+        - complementary [ref=e270]:
+          - heading "Settlement" [level=3] [ref=e271]
+          - list [ref=e272]:
+            - listitem [ref=e273]:
+              - generic "Keszthely" [ref=e274] [cursor=pointer]:
+                - text: Keszthely
+                - generic [ref=e275]: "23"
+            - listitem [ref=e276]:
+              - generic "Cserszegtomaj" [ref=e277] [cursor=pointer]:
+                - text: Cserszegtomaj
+                - generic [ref=e278]: "20"
+            - listitem [ref=e279]:
+              - generic "Hévíz" [ref=e280] [cursor=pointer]:
+                - text: Hévíz
+                - generic [ref=e281]: "16"
+            - listitem [ref=e282]:
+              - generic "Gyenesdiás" [ref=e283] [cursor=pointer]:
+                - text: Gyenesdiás
+                - generic [ref=e284]: "12"
+        - complementary [ref=e285]:
+          - generic [ref=e286] [cursor=pointer]: Search
+  - contentinfo [ref=e287]:
+    - complementary [ref=e289]:
+      - complementary [ref=e290]:
+        - paragraph [ref=e292]:
+          - link "Capital 99 logo" [ref=e293] [cursor=pointer]:
+            - /url: /
+            - img "Capital 99 logo" [ref=e294]
+          - text: "Telefon:"
+          - link "+36 83 511 595" [ref=e295] [cursor=pointer]:
+            - /url: tel:+3683511595
+          - text: "Mobile:"
+          - link "+36 70 701 8360" [ref=e296] [cursor=pointer]:
+            - /url: tel:+36707018360
+          - text: "Email:"
+          - link "info@capital99.hu" [ref=e297] [cursor=pointer]:
+            - /url: mailto:info@capital99.hu
+          - text: 8360 Keszthely, Kossuth L. street 49.
+          - link "To establish contact, please click here >" [ref=e298] [cursor=pointer]:
+            - /url: /contact
+      - complementary [ref=e299]:
+        - list [ref=e301]:
+          - listitem [ref=e302]:
+            - link "Real estate finder" [ref=e303] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/real-estates-for-sale
+          - listitem [ref=e304]:
+            - link "Top 10 real estates" [ref=e305] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale
+          - listitem [ref=e306]:
+            - link "Why Hungary?" [ref=e307] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/why-hungary
+          - listitem [ref=e308]:
+            - link "About us" [ref=e309] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/about-us
+      - complementary [ref=e310]:
+        - list [ref=e312]:
+          - listitem [ref=e313]:
+            - link "Map" [ref=e314] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/map
+          - listitem [ref=e315]:
+            - link "Services" [ref=e316] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/services
+          - listitem [ref=e317]:
+            - link "Customer opinion" [ref=e318] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/customer-opinion
+      - complementary [ref=e319]:
+        - list [ref=e321]:
+          - listitem [ref=e322]:
+            - link "Information for real estate buyers" [ref=e323] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/information-for-real-estate-buyers
+          - listitem [ref=e324]:
+            - link "Privacy policy" [ref=e325] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/privacy-policy
+          - listitem [ref=e326]:
+            - link "Imprint" [ref=e327] [cursor=pointer]:
+              - /url: https://propertybalaton.co.uk/imprint
+    - complementary [ref=e328]:
+      - generic [ref=e329]:
+        - generic [ref=e330]: 2026 Copyright Capital99.eu
+        - complementary [ref=e331]:
+          - generic [ref=e332]:
+            - link "2PIXELS" [ref=e333] [cursor=pointer]:
+              - /url: http://2pixels.hu/
+            - img "+" [ref=e334]
+            - link "BÁBELHAL" [ref=e335] [cursor=pointer]:
+              - /url: https://babelhal.hu/
+    - navigation:
+      - link "propertybalaton.co.uk":
+        - /url: /
+        - img "propertybalaton.co.uk"
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+        - generic: "Search...:"
+        - searchbox "Search...:"
+      - generic:
+        - list:
+          - listitem:
+            - link "Main page":
+              - /url: https://propertybalaton.co.uk/
+          - listitem:
+            - link "Real estate finder 119":
+              - /url: https://propertybalaton.co.uk/real-estates-for-sale
+          - listitem:
+            - link "Top 10 real estates":
+              - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale
+            - list:
+              - listitem:
+                - link "Luxury mansion":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/luxury-mansion
+              - listitem:
+                - link "Family house with big garden":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/family-house-with-big-garden
+              - listitem:
+                - link "Near the shore of Lake Balaton":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/near-the-shore-of-lake-balaton
+              - listitem:
+                - link "Energy saving":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/energy-saving
+              - listitem:
+                - link "Luxury house":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/luxury-house
+              - listitem:
+                - link "View on Lake Balaton":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/view-on-lake-balaton
+              - listitem:
+                - link "Near the thermal bath":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/near-the-thermal-bath
+              - listitem:
+                - link "Swimming-pool":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/swimming-pool
+              - listitem:
+                - link "New family house":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/new-family-house
+              - listitem:
+                - link "Mansion with ancient trees":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/mansion-with-ancient-trees
+              - listitem:
+                - link "Family house in green belt":
+                  - /url: https://propertybalaton.co.uk/top-10-real-estates-for-sale/family-house-in-green-belt
+          - listitem:
+            - link "Why Hungary?":
+              - /url: https://propertybalaton.co.uk/why-hungary
+          - listitem:
+            - link "Favourites 0":
+              - /url: https://propertybalaton.co.uk/favourites
+          - listitem:
+            - link "About us":
+              - /url: https://propertybalaton.co.uk/about-us
+          - listitem:
+            - link "Contact":
+              - /url: https://propertybalaton.co.uk/contact
+          - listitem:
+            - link "Services":
+              - /url: https://propertybalaton.co.uk/services
+          - listitem:
+            - link "Customer opinion":
+              - /url: https://propertybalaton.co.uk/customer-opinion
+          - listitem:
+            - link "Information for real estate buyers":
+              - /url: https://propertybalaton.co.uk/information-for-real-estate-buyers
+          - listitem:
+            - link "Privacy policy":
+              - /url: https://propertybalaton.co.uk/privacy-policy
+          - listitem:
+            - link "Imprint":
+              - /url: https://propertybalaton.co.uk/imprint
+        - generic:
+          - list:
+            - listitem:
+              - link "hu":
+                - /url: https://balatoningatlankozvetito.hu
+                - generic: hu
+            - listitem:
+              - link "de":
+                - /url: https://ungarnimmobilienangebot.de
+                - generic: de
+            - listitem:
+              - link "en":
+                - /url: https://propertybalaton.co.uk
+                - generic: en
+            - listitem:
+              - link "ru":
+                - /url: https://vengrija-dom.ru
+                - generic: ru
+            - listitem:
+              - link "be":
+                - /url: https://hongarijehuis.be
+                - generic: be
+      - generic:
+        - link "Call":
+          - /url: tel:+36707018360
+          - img
+          - text: Call
+        - link "E-mail":
+          - /url: mailto:info@capital99.hu
+          - img
+          - text: E-mail
+        - link "Map":
+          - /url: https://goo.gl/maps/emuuN9sUUUPmJiD59
+          - img
+          - text: Map
