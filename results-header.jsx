@@ -46,7 +46,7 @@ function ResultsHeader({ brand = "Otthon" }) {
             Saved <span className="mono" style={{ color: "var(--muted-2)" }}>3</span>
           </a>
           <span className="mono">EN ▾</span>
-          <a style={{ border: "1px solid var(--line-strong)", padding: "6px 12px", borderRadius: 999, cursor: "pointer", fontWeight: 500 }}>For agents</a>
+          <a href="dashboard.html" style={{ border: "1px solid var(--line-strong)", padding: "6px 12px", borderRadius: 999, cursor: "pointer", fontWeight: 500 }}>For agents</a>
         </nav>
       </div>
     </header>

@@ -81,7 +81,7 @@ function Header({ brand }) {
           <LangPicker />
 
           {/* For agents */}
-          <a style={{
+          <a href="dashboard.html" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             color: "var(--ink)",
             border: "1px solid var(--line-strong)",
