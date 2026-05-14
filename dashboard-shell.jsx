@@ -4,6 +4,67 @@
 
 const { useState: useStateD } = React;
 
+function BottomTabBar({ view, setView }) {
+  const tabs = [
+    { id: "home",      l: "Home",       icon: HomeIcon },
+    { id: "listings",  l: "Listings",   icon: ListIcon,  badge: 24 },
+    { id: "enquiries", l: "Enquiries",  icon: MailIcon,  badge: 12, dot: true },
+    { id: "profile",   l: "Profile",    icon: UserIcon },
+  ];
+  return (
+    <nav className="bottom-tab-bar" style={{
+      display: "none",
+      position: "fixed",
+      left: 0, right: 0, bottom: 0,
+      height: 64,
+      background: "var(--bg)",
+      borderTop: "1px solid var(--line)",
+      zIndex: 50,
+      alignItems: "center",
+      justifyContent: "space-around",
+      paddingBottom: "env(safe-area-inset-bottom, 0)",
+    }}>
+      {tabs.map(tab => {
+        const active = view === tab.id;
+        const Icon = tab.icon;
+        return (
+          <button key={tab.id}
+            onClick={() => setView(tab.id)}
+            style={{
+              appearance: "none", border: "none",
+              background: "transparent",
+              display: "flex", flexDirection: "column",
+              alignItems: "center", gap: 3,
+              padding: "6px 12px",
+              cursor: "pointer",
+              color: active ? "var(--accent-ink)" : "var(--muted)",
+              position: "relative",
+              minWidth: 60,
+            }}
+          >
+            <span style={{ position: "relative" }}>
+              <Icon active={active} />
+              {tab.badge && tab.dot && (
+                <span style={{
+                  position: "absolute", top: -3, right: -6,
+                  width: 7, height: 7,
+                  background: "var(--accent)",
+                  borderRadius: 999,
+                  border: "2px solid var(--bg)",
+                }}/>
+              )}
+            </span>
+            <span style={{
+              fontSize: 10, fontWeight: active ? 600 : 500,
+              letterSpacing: "0.02em",
+            }}>{tab.l}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
 function Sidebar({ view, setView }) {
   const items = [
     { id: "home",     l: "Dashboard",     icon: HomeIcon },
@@ -14,7 +75,7 @@ function Sidebar({ view, setView }) {
     { id: "profile",  l: "Profile",       icon: UserIcon },
   ];
   return (
-    <aside style={{
+    <aside className="desktop-sidebar" style={{
       position: "fixed",
       left: 0, top: 0, bottom: 0,
       width: "var(--sidebar-w)",
@@ -123,7 +184,7 @@ function Sidebar({ view, setView }) {
 
 function Topbar({ title, subtitle, actions }) {
   return (
-    <header style={{
+    <header className="dash-topbar" style={{
       position: "sticky", top: 0,
       height: "var(--topbar-h)",
       background: "var(--bg)",
@@ -133,6 +194,18 @@ function Topbar({ title, subtitle, actions }) {
       padding: "0 28px",
       gap: 18,
     }}>
+      <a href="index.html" className="topbar-brand" style={{
+        display: "none", alignItems: "center", gap: 8,
+        color: "var(--ink)", textDecoration: "none",
+      }}>
+        <span style={{ width: 24, height: 24, borderRadius: 5, background: "var(--ink)", display: "grid", placeItems: "center", flexShrink: 0 }}>
+          <svg width="12" height="12" viewBox="0 0 16 16">
+            <path d="M2 9 L8 3 L14 9" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <rect x="4.2" y="9" width="7.6" height="4.5" fill="white" />
+          </svg>
+        </span>
+        <span style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Otthon</span>
+      </a>
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
         <h1 style={{
           margin: 0,
@@ -142,7 +215,7 @@ function Topbar({ title, subtitle, actions }) {
         {subtitle && <span className="mono" style={{ marginTop: 4 }}>{subtitle}</span>}
       </div>
 
-      <div style={{ flex: 1, maxWidth: 320, marginLeft: 32 }}>
+      <div className="topbar-search" style={{ flex: 1, maxWidth: 320, marginLeft: 32 }}>
         <div style={{
           display: "flex", alignItems: "center", gap: 8,
           background: "var(--surface)",
@@ -201,4 +274,4 @@ function MailIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fi
 function ChartIcon() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>; }
 function UserIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>; }
 
-Object.assign(window, { Sidebar, Topbar, IconBtn });
+Object.assign(window, { Sidebar, BottomTabBar, Topbar, IconBtn });

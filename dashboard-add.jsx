@@ -14,7 +14,7 @@ const STEPS = [
 function AddPropertyView() {
   const [step, setStep] = useStateA(3);
   return (
-    <div style={{ padding: 28, display: "grid", gridTemplateColumns: "minmax(0, 1fr) 320px", gap: 28, alignItems: "start" }}>
+    <div className="add-property-grid" style={{ padding: 28, display: "grid", gridTemplateColumns: "minmax(0, 1fr) 320px", gap: 28, alignItems: "start" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <Stepper step={step} setStep={setStep} />
         {step === 1 && <StepBasics />}
@@ -32,7 +32,7 @@ function AddPropertyView() {
 // ── Stepper ─────────────────────────────────────────────────────────────
 function Stepper({ step, setStep }) {
   return (
-    <div style={{
+    <div className="wizard-stepper" style={{
       background: "var(--bg)",
       border: "1px solid var(--line)",
       borderRadius: "var(--radius-lg)",
@@ -60,7 +60,7 @@ function Stepper({ step, setStep }) {
                 }}>
                   {done ? "✓" : s.id}
                 </span>
-                <span style={{
+                <span className="step-label" style={{
                   fontSize: 11,
                   fontWeight: active ? 600 : 500,
                   color: active ? "var(--ink)" : "var(--muted)",
@@ -97,7 +97,7 @@ function Stepper({ step, setStep }) {
 
 function StepNav({ step, setStep }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
+    <div className="step-nav" style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
       <button
         onClick={() => setStep(Math.max(1, step - 1))}
         disabled={step === 1}
@@ -256,7 +256,7 @@ function StepPhotos() {
             }}>Auto-arrange</button>
           </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+        <div className="photo-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
           {slots.map((s, i) => (
             <PhotoTile key={s.id} index={i + 1} {...s} />
           ))}
@@ -448,7 +448,7 @@ function StepPublish() {
   ];
   return (
     <Card>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+      <div className="publish-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
         {checks.map(c => (
           <div key={c.l} style={{
             display: "flex", alignItems: "flex-start", gap: 10,
@@ -489,7 +489,7 @@ function StepPublish() {
 // ── Live preview pane (right column) ────────────────────────────────────
 function LivePreview({ step }) {
   return (
-    <div style={{ position: "sticky", top: "calc(var(--topbar-h) + 28px)", display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="live-preview" style={{ position: "sticky", top: "calc(var(--topbar-h) + 28px)", display: "flex", flexDirection: "column", gap: 14 }}>
       <div className="mono" style={{ color: "var(--accent-ink)" }}>Live preview</div>
       <div style={{
         background: "var(--bg)",
@@ -554,7 +554,7 @@ function FieldGroup({ label, full, children }) {
   );
 }
 function Grid({ cols, children }) {
-  return <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 16 }}>{children}</div>;
+  return <div className={`form-grid-${cols}`} style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 16 }}>{children}</div>;
 }
 function Input({ value, onChange = () => {} }) {
   return (

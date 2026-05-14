@@ -5,13 +5,13 @@ const { useState: useStateH2 } = React;
 
 function DashboardHome({ onAdd }) {
   return (
-    <div style={{ padding: 28, display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="dash-content" style={{ padding: 28, display: "flex", flexDirection: "column", gap: 24 }}>
       <KPIRow />
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)", gap: 24 }}>
+      <div className="dash-two-col" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)", gap: 24 }}>
         <ViewsChart />
         <TopViewed />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)", gap: 24 }}>
+      <div className="dash-two-col" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)", gap: 24 }}>
         <EnquiriesTable />
         <ExpiringSoon onAdd={onAdd} />
       </div>
@@ -28,7 +28,7 @@ function KPIRow() {
     { label: "Avg. time on page", value: "2:34", unit: "",   delta: "−0:12", trend: [180,175,170,168,162,165,160,158,155,154,156,154], positive: true },
   ];
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+    <div className="kpi-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
       {kpis.map(k => <KPI key={k.label} {...k} />)}
     </div>
   );
@@ -38,11 +38,12 @@ function KPI({ label, value, unit, delta, trend, positive, alert }) {
   return (
     <div style={{
       background: "var(--bg)",
-      border: "1px solid var(--line)",
+      border: "1px solid color-mix(in oklch, var(--line) 60%, transparent)",
       borderRadius: "var(--radius-lg)",
       padding: 18,
       display: "flex", flexDirection: "column", gap: 12,
       position: "relative",
+      boxShadow: "0 1px 3px rgba(20,30,28,0.04), 0 4px 14px rgba(20,30,28,0.03)",
     }}>
       {alert && <span style={{
         position: "absolute", top: 14, right: 14,
@@ -137,7 +138,7 @@ function ViewsChart() {
           <span>APR 14</span><span>APR 21</span><span>APR 28</span><span>MAY 5</span><span>MAY 13</span>
         </div>
       </div>
-      <div style={{
+      <div className="chart-ministats" style={{
         display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 18,
         marginTop: 18, paddingTop: 18, borderTop: "1px solid var(--line)",
       }}>
@@ -236,7 +237,7 @@ function EnquiriesTable() {
         right={<a style={{ fontSize: 13, color: "var(--accent-ink)", cursor: "pointer" }}>View all →</a>}
       />
       <div>
-        <div style={{
+        <div className="enquiries-header" style={{
           display: "grid",
           gridTemplateColumns: "60px 1fr 1fr 110px",
           gap: 12,
@@ -247,7 +248,7 @@ function EnquiriesTable() {
           ))}
         </div>
         {rows.map((r, i) => (
-          <div key={i} style={{
+          <div key={i} className="enquiry-row" style={{
             display: "grid",
             gridTemplateColumns: "60px 1fr 1fr 110px",
             gap: 12,
@@ -363,9 +364,10 @@ function Card({ children }) {
   return (
     <div style={{
       background: "var(--bg)",
-      border: "1px solid var(--line)",
+      border: "1px solid color-mix(in oklch, var(--line) 60%, transparent)",
       borderRadius: "var(--radius-lg)",
       padding: 18,
+      boxShadow: "0 1px 3px rgba(20,30,28,0.04), 0 4px 14px rgba(20,30,28,0.03)",
     }}>{children}</div>
   );
 }

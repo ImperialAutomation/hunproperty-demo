@@ -54,7 +54,8 @@ function DashboardApp() {
   return (
     <div data-screen-label="04 Agent dashboard" style={{ minHeight: "100vh" }}>
       <Sidebar view={view} setView={setView} />
-      <div style={{ marginLeft: "var(--sidebar-w)" }}>
+      <BottomTabBar view={view} setView={setView} />
+      <div className="dash-main" style={{ marginLeft: "var(--sidebar-w)" }}>
         <Topbar title={meta.t} subtitle={meta.s} actions={topActions} />
 
         {view === "home"      && <DashboardHome onAdd={() => setView("add")} />}

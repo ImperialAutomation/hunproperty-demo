@@ -600,3 +600,137 @@
     max-width: 100% !important;
   }
 }
+
+/* ============================================================
+   DASHBOARD — sidebar → bottom tab bar on mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Hide desktop sidebar */
+  aside.desktop-sidebar,
+  .desktop-sidebar,
+  [data-screen-label="04 Agent dashboard"] > aside {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  /* Show bottom tab bar */
+  .bottom-tab-bar {
+    display: flex !important;
+  }
+
+  /* Remove sidebar margin, add bottom padding for tab bar */
+  .dash-main,
+  [data-screen-label="04 Agent dashboard"] > div:nth-child(3) {
+    margin-left: 0 !important;
+    padding-bottom: 80px !important;
+  }
+
+  /* Topbar: compact, no search */
+  .dash-topbar {
+    padding: 0 16px !important;
+    height: auto !important;
+    min-height: 48px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    gap: 10px !important;
+  }
+  .dash-topbar h1 {
+    font-size: 18px !important;
+  }
+  .dash-topbar .mono {
+    display: none !important;
+  }
+  /* Show brand link, hide page title on mobile */
+  .topbar-brand {
+    display: flex !important;
+  }
+  .dash-topbar h1 {
+    display: none !important;
+  }
+  .topbar-search {
+    display: none !important;
+  }
+
+  /* KPI row: 2x2 grid */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Dashboard 2-col grids → stack */
+  .dash-two-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Dashboard content padding */
+  .dash-content {
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+
+  /* Enquiries table: hide grid columns, show as stacked cards */
+  .enquiries-header {
+    display: none !important;
+  }
+  .enquiry-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+  /* Chart mini-stats: 2x2 */
+  .chart-ministats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Add property: single column, hide live preview */
+  .add-property-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .live-preview {
+    display: none !important;
+  }
+
+  /* Add property: photo grid 2 cols */
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Add property: form grids responsive */
+  .form-grid-2,
+  .form-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Step nav: stack buttons */
+  .step-nav {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .step-nav > div {
+    width: 100% !important;
+  }
+  .step-nav > div > button,
+  .step-nav > button {
+    flex: 1 !important;
+  }
+
+  /* Stepper: compact */
+  .wizard-stepper .step-label {
+    display: none !important;
+  }
+
+  /* Publish checklist: 1 col */
+  .publish-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .bottom-tab-bar {
+    display: none !important;
+  }
+  .topbar-brand {
+    display: none !important;
+  }
+}
