@@ -1,10 +1,14 @@
-// app.jsx — Otthon homepage shell
+// app.jsx — Otthon homepage (v2)
+// White, simple, sexy. Houses are emotion.
+// Layout: compact search banner → featured (magazine) + over ons →
+//         three Collections (Essential / Signature / Prestige) → footer.
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "brandName": "Otthon",
   "accent": "terracotta",
-  "searchLayout": "row",
-  "showRegionLabel": true
+  "featuredLayout": "magazine",
+  "showRegions": false,
+  "language": "EN"
 }/*EDITMODE-END*/;
 
 const ACCENTS = {
@@ -22,6 +26,9 @@ function applyAccent(name) {
   document.documentElement.style.setProperty("--accent-ink", a.ink);
 }
 
+/* ============================================================
+   HEADER — slim, white, brand left / nav right
+   ============================================================ */
 function Header({ brand }) {
   return (
     <header style={{
@@ -42,7 +49,6 @@ function Header({ brand }) {
         justifyContent: "space-between",
         gap: 24,
       }}>
-        {/* Logo */}
         <a style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
           <span style={{
             width: 26, height: 26,
@@ -50,7 +56,6 @@ function Header({ brand }) {
             background: "var(--ink)",
             display: "grid", placeItems: "center",
           }}>
-            {/* tiny Hungarian-house glyph: arch over square — minimal, brand-mark style */}
             <svg width="14" height="14" viewBox="0 0 16 16">
               <path d="M2 9 L8 3 L14 9" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
               <rect x="4.2" y="9" width="7.6" height="4.5" fill="white" />
@@ -70,18 +75,13 @@ function Header({ brand }) {
           </span>
         </a>
 
-        {/* Nav (right) */}
         <nav style={{ display: "flex", alignItems: "center", gap: 24, fontSize: 14 }}>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Buy</a>
-          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Rent</a>
+          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Collections</a>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Regions</a>
-          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Guide</a>
-
-          {/* Language picker */}
+          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>About</a>
           <LangPicker />
-
-          {/* For agents */}
-          <a href="dashboard.html" style={{
+          <a style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             color: "var(--ink)",
             border: "1px solid var(--line-strong)",
@@ -118,18 +118,10 @@ function LangPicker() {
   return (
     <div ref={ref} style={{ position: "relative" }}>
       <button onClick={() => setOpen(v => !v)} style={{
-        appearance: "none",
-        border: "none",
-        background: "transparent",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 6,
-        fontFamily: "var(--mono)",
-        fontSize: 11,
-        letterSpacing: "0.06em",
-        color: "var(--ink)",
-        cursor: "pointer",
-        padding: "4px 6px",
+        appearance: "none", border: "none", background: "transparent",
+        display: "inline-flex", alignItems: "center", gap: 6,
+        fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.06em",
+        color: "var(--ink)", cursor: "pointer", padding: "4px 6px",
       }}>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
           <circle cx="12" cy="12" r="9"/>
@@ -143,21 +135,15 @@ function LangPicker() {
           position: "absolute", top: "calc(100% + 6px)", right: 0,
           background: "var(--bg)", border: "1px solid var(--line)",
           borderRadius: 8, padding: 4, minWidth: 140,
-          boxShadow: "0 12px 26px rgba(20,30,28,0.10)",
-          zIndex: 60,
+          boxShadow: "0 12px 26px rgba(20,30,28,0.10)", zIndex: 60,
         }}>
           {langs.map(l => (
             <div key={l.id}
               onClick={() => { setLang(l.id); setOpen(false); }}
               style={{
-                padding: "7px 10px",
-                borderRadius: 6,
-                fontSize: 13,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "baseline",
-                justifyContent: "space-between",
-                gap: 10,
+                padding: "7px 10px", borderRadius: 6, fontSize: 13,
+                cursor: "pointer", display: "flex", alignItems: "baseline",
+                justifyContent: "space-between", gap: 10,
                 background: l.id === lang ? "var(--surface)" : "transparent",
               }}
               onMouseEnter={e => e.currentTarget.style.background = "var(--surface)"}
@@ -173,90 +159,606 @@ function LangPicker() {
   );
 }
 
-function Hero({ searchLayout }) {
+/* ============================================================
+   SEARCH BANNER — compact, white, top of page
+   Tagline + quick search points (chips) + search bar.
+   ============================================================ */
+function SearchBanner() {
   return (
     <section style={{
-      padding: "44px 32px 56px",
+      padding: "44px 32px 36px",
       maxWidth: 1320,
       margin: "0 auto",
     }}>
-      {/* Top label + intro */}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 18, gap: 24 }}>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
+        gap: 64,
+        alignItems: "center",
+      }}>
+        {/* LEFT — copy + search */}
         <div>
-          <div className="mono" style={{ marginBottom: 8 }}>
-            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: 999, background: "var(--accent)", marginRight: 8, transform: "translateY(-1px)" }}/>
+          <div className="mono" style={{ marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{
+              display: "inline-block", width: 6, height: 6, borderRadius: 999,
+              background: "var(--accent)",
+            }}/>
             Live · 2,461 listings across Hungary
           </div>
           <h1 style={{
             fontFamily: "var(--serif)",
             fontWeight: 400,
-            fontSize: 44,
-            lineHeight: 1.05,
+            fontSize: 56,
+            lineHeight: 1.0,
             margin: 0,
-            letterSpacing: "-0.012em",
+            letterSpacing: "-0.018em",
             color: "var(--ink)",
-            maxWidth: 720,
+            textWrap: "balance",
           }}>
-            Find a home in Hungary — <em style={{ fontStyle: "italic" }}>lake, city, or vineyard</em>.
+            A home in Hungary,<br/>
+            <em style={{ fontStyle: "italic", color: "var(--accent-ink)" }}>for the life you want to live.</em>
           </h1>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 12, color: "var(--muted)", flexShrink: 0 }}>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
-            Verified listings
-          </span>
-          <span style={{ width: 1, height: 12, background: "var(--line-strong)" }}/>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg>
-            4 languages
-          </span>
-        </div>
-      </div>
+          <p style={{
+            margin: "18px 0 26px",
+            fontSize: 16,
+            lineHeight: 1.55,
+            color: "var(--muted)",
+            maxWidth: 520,
+          }}>
+            From a stone cottage by Lake Balaton to a modern villa above the
+            Danube — find homes hand-picked for character, light, and place.
+          </p>
 
-      {/* Search + Map */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "minmax(0, 1.35fr) minmax(0, 1fr)",
-        gap: 28,
-        alignItems: "start",
-      }}>
-        <div>
-          <SearchBar layout={searchLayout} />
+          <SearchBar layout="row" />
         </div>
-        <HungaryRegionMap />
+
+        {/* RIGHT — quick search points (banner of "search points") */}
+        <SearchPoints />
       </div>
     </section>
   );
 }
 
+/* Quick search points — a tidy panel of pre-built searches. */
+function SearchPoints() {
+  const points = [
+    { kicker: "Most popular",  label: "Balaton lakefront",   meta: "428 homes", swatch: "swatch-1" },
+    { kicker: "City",          label: "Budapest, District V", meta: "112 homes", swatch: "swatch-2" },
+    { kicker: "Countryside",   label: "Vineyards & farms",    meta: "247 homes", swatch: "swatch-3" },
+    { kicker: "Under €100k",   label: "Renovation projects",  meta: "612 homes", swatch: "swatch-5" },
+  ];
+  return (
+    <div style={{
+      border: "1px solid var(--line)",
+      borderRadius: 14,
+      padding: 6,
+      background: "var(--bg)",
+      boxShadow: "0 1px 0 var(--line), 0 18px 40px -24px rgba(20,30,28,0.18)",
+    }}>
+      <div style={{
+        padding: "12px 14px 8px",
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+      }}>
+        <div className="mono">Quick searches</div>
+        <a className="mono" style={{ color: "var(--accent-ink)", cursor: "pointer" }}>See all →</a>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
+        {points.map((p, i) => (
+          <a key={i}
+            onClick={() => { window.location.href = "results.html"; }}
+            style={{
+              position: "relative",
+              display: "block",
+              borderRadius: 10,
+              overflow: "hidden",
+              cursor: "pointer",
+              aspectRatio: "1.4 / 1",
+            }}
+          >
+            <Swatch
+              name={p.swatch}
+              label={p.label}
+              slotId={`qsearch-${i}`}
+              height={"100%"}
+              rounded={10}
+              placeholder={p.label}
+            />
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to top, rgba(20,30,28,0.62) 0%, rgba(20,30,28,0.05) 60%, transparent 100%)",
+            }}/>
+            <div style={{
+              position: "absolute", left: 12, right: 12, bottom: 10,
+              color: "white",
+            }}>
+              <div className="mono" style={{ color: "rgba(255,255,255,0.78)", marginBottom: 2 }}>
+                {p.kicker}
+              </div>
+              <div style={{
+                display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 8,
+              }}>
+                <div style={{ fontFamily: "var(--serif)", fontSize: 20, lineHeight: 1.1 }}>{p.label}</div>
+                <div style={{ fontSize: 11, opacity: 0.85, whiteSpace: "nowrap" }}>{p.meta}</div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   FEATURED — "Aanbevolen woningen" — sexier, magazine layout.
+   One large hero card + two side cards + supporting row.
+   To the right of the lead row sits a compact "Over ons" panel.
+   ============================================================ */
 function FeaturedSection() {
+  // Pick a small curated set from PROPERTIES (with images preferred).
+  const withImg = PROPERTIES.filter(p => p.src);
+  const featured = withImg.length >= 5 ? withImg.slice(0, 5) : PROPERTIES.slice(0, 5);
+  const [hero, ...rest] = featured;
   return (
     <section style={{
-      padding: "12px 32px 40px",
+      padding: "20px 32px 56px",
       maxWidth: 1320,
       margin: "0 auto",
     }}>
       <SectionHead
-        kicker="Just listed"
-        title="Featured homes this week"
-        cta="Browse all 2,461 →"
+        kicker="Featured · This week"
+        title="Homes we'd live in"
+        subtitle="Hand-picked by our agents — for the light, the bones, the view."
+        cta="See all 2,461 →"
       />
+
+      {/* Magazine layout: hero (left) + Over ons (right) */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 2fr) minmax(0, 1fr)",
+        gap: 22,
+        marginBottom: 22,
+      }}>
+        <HeroPropertyCard p={hero} />
+        <OverOnsPanel />
+      </div>
+
+      {/* Supporting row — 4 across */}
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
         gap: 22,
         rowGap: 32,
       }}>
-        {PROPERTIES.map(p => <PropertyCard key={p.id} p={p} />)}
+        {rest.slice(0, 4).map(p => <PropertyCard key={p.id} p={p} />)}
       </div>
     </section>
   );
 }
 
+/* Bigger, sexier card for the hero slot — large image, generous type. */
+function HeroPropertyCard({ p }) {
+  const [fav, setFav] = React.useState(false);
+  return (
+    <article
+      onClick={() => { window.location.href = "detail.html"; }}
+      style={{
+        position: "relative",
+        display: "flex", flexDirection: "column",
+        cursor: "pointer",
+        borderRadius: "var(--radius-lg)",
+        overflow: "hidden",
+        border: "1px solid var(--line)",
+        background: "var(--bg)",
+        minHeight: 520,
+      }}
+    >
+      <div style={{ position: "relative", flex: "1 1 auto", minHeight: 380 }}>
+        <Swatch
+          name={p.swatch}
+          label={`PHOTO · ${p.location}`}
+          slotId={`hero-${p.id}`}
+          height={"100%"}
+          rounded={0}
+          placeholder={`Drop a photo · ${p.location}`}
+          src={p.src}
+        />
+        {/* Tag + heart */}
+        <div style={{
+          position: "absolute", left: 16, top: 16,
+          display: "flex", gap: 6,
+        }}>
+          <span style={{
+            background: "var(--bg)", color: "var(--ink)",
+            fontSize: 11, fontWeight: 500,
+            padding: "5px 10px", borderRadius: 999,
+          }}>{p.tag || "Featured"}</span>
+          <span style={{
+            background: "var(--ink)", color: "var(--bg)",
+            fontSize: 11, fontFamily: "var(--mono)", letterSpacing: "0.05em", textTransform: "uppercase",
+            padding: "5px 10px", borderRadius: 999,
+          }}>Editor's pick</span>
+        </div>
+        <button
+          onClick={(e) => { e.stopPropagation(); setFav(v => !v); }}
+          style={{
+            position: "absolute", right: 16, top: 16,
+            width: 38, height: 38,
+            background: "var(--bg)",
+            border: "none", borderRadius: 999,
+            display: "grid", placeItems: "center",
+            cursor: "pointer",
+            color: fav ? "var(--accent)" : "var(--ink)",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.10)",
+          }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill={fav ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+        <div style={{
+          position: "absolute", right: 16, bottom: 16,
+          background: "rgba(20,30,28,0.62)", color: "white",
+          fontSize: 12, fontFamily: "var(--mono)",
+          padding: "5px 10px", borderRadius: 999,
+          display: "inline-flex", alignItems: "center", gap: 6,
+          backdropFilter: "blur(4px)",
+        }}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          {p.photoCount} photos
+        </div>
+      </div>
+
+      {/* Body */}
+      <div style={{
+        padding: "20px 24px 22px",
+        display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24,
+        borderTop: "1px solid var(--line)",
+      }}>
+        <div style={{ minWidth: 0 }}>
+          <div className="mono" style={{ marginBottom: 6 }}>{p.region || p.location}</div>
+          <h3 style={{
+            margin: 0,
+            fontFamily: "var(--serif)", fontWeight: 400, fontSize: 30, lineHeight: 1.1,
+            letterSpacing: "-0.012em", color: "var(--ink)",
+          }}>{p.title}</h3>
+          <div style={{
+            display: "flex", flexWrap: "wrap", gap: 0, marginTop: 12,
+            fontSize: 13, color: "var(--ink-2)",
+          }}>
+            {[
+              p.rooms != null && { v: p.rooms, u: "rooms" },
+              p.baths != null && { v: p.baths, u: "bath" },
+              p.area != null && { v: `${p.area}`, u: "m²" },
+              p.plot != null && { v: `${p.plot}`, u: "m² plot" },
+            ].filter(Boolean).map((s, i, arr) => (
+              <span key={i} style={{
+                display: "inline-flex", alignItems: "baseline", gap: 5,
+                paddingRight: 12, marginRight: 12,
+                borderRight: i < arr.length - 1 ? "1px solid var(--line)" : "none",
+              }}>
+                <span style={{ fontWeight: 600, color: "var(--ink)" }}>{s.v}</span>
+                <span style={{ color: "var(--muted)" }}>{s.u}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div style={{ textAlign: "right", flexShrink: 0 }}>
+          <div className="mono" style={{ marginBottom: 4 }}>Asking</div>
+          <div style={{
+            fontFamily: "var(--serif)", fontSize: 38, lineHeight: 1,
+            color: "var(--ink)",
+          }}>
+            {fmtPrice(p.price)}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ============================================================
+   OVER ONS — sits next to the hero featured card.
+   Compact: who we are, why we're different, one CTA.
+   ============================================================ */
+function OverOnsPanel() {
+  return (
+    <aside style={{
+      display: "flex", flexDirection: "column",
+      background: "var(--ink)",
+      color: "var(--bg)",
+      borderRadius: "var(--radius-lg)",
+      padding: "26px 26px 24px",
+      minHeight: 520,
+      position: "relative",
+      overflow: "hidden",
+    }}>
+      {/* Subtle texture */}
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(800px 320px at 80% -10%, color-mix(in oklch, var(--accent) 24%, transparent), transparent 60%)",
+        pointerEvents: "none",
+      }}/>
+      <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 14, flex: "0 0 auto" }}>
+        <div className="mono" style={{ color: "color-mix(in oklch, var(--bg) 70%, transparent)" }}>
+          About us · Over ons
+        </div>
+        <h3 style={{
+          margin: 0,
+          fontFamily: "var(--serif)", fontWeight: 400, fontSize: 30, lineHeight: 1.08,
+          letterSpacing: "-0.01em",
+        }}>
+          A small team that has bought homes in Hungary — and helps you do the same.
+        </h3>
+        <p style={{
+          margin: 0, fontSize: 14.5, lineHeight: 1.55,
+          color: "color-mix(in oklch, var(--bg) 78%, transparent)",
+        }}>
+          We speak Dutch, English, German and Hungarian. We've walked every
+          village. We never sell a house we wouldn't live in ourselves.
+        </p>
+      </div>
+
+      {/* Stats row */}
+      <div style={{
+        position: "relative",
+        marginTop: "auto",
+        paddingTop: 20,
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 0,
+        borderTop: "1px solid color-mix(in oklch, var(--bg) 18%, transparent)",
+      }}>
+        {[
+          { v: "12 yrs", l: "On the ground" },
+          { v: "240+",   l: "Homes sold"     },
+          { v: "4",      l: "Languages"      },
+        ].map((s, i, arr) => (
+          <div key={i} style={{
+            padding: "16px 4px 4px",
+            borderRight: i < arr.length - 1 ? "1px solid color-mix(in oklch, var(--bg) 14%, transparent)" : "none",
+          }}>
+            <div style={{ fontFamily: "var(--serif)", fontSize: 26, lineHeight: 1 }}>{s.v}</div>
+            <div className="mono" style={{ marginTop: 6, color: "color-mix(in oklch, var(--bg) 60%, transparent)" }}>{s.l}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ position: "relative", display: "flex", gap: 10, marginTop: 18 }}>
+        <a style={{
+          flex: 1,
+          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+          padding: "12px 16px",
+          background: "var(--bg)", color: "var(--ink)",
+          borderRadius: 999, fontSize: 14, fontWeight: 600,
+          cursor: "pointer",
+        }}>
+          Meet the team
+          <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 2l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </a>
+        <a style={{
+          flex: 1,
+          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+          padding: "12px 16px",
+          background: "transparent", color: "var(--bg)",
+          border: "1px solid color-mix(in oklch, var(--bg) 30%, transparent)",
+          borderRadius: 999, fontSize: 14, fontWeight: 500,
+          cursor: "pointer",
+        }}>
+          Book a call
+        </a>
+      </div>
+    </aside>
+  );
+}
+
+/* ============================================================
+   COLLECTIONS — the three tiers.
+   Essential / Signature / Prestige. Big, simple, sexy.
+   ============================================================ */
+const COLLECTIONS = [
+  {
+    id: "essential",
+    name: "Essential Collection",
+    subtitle: "Authentic & Rustic",
+    priceMax: 150000,
+    priceLabel: "Up to €150,000",
+    blurb: "Stone walls, old beams, big skies. For makers, renovators, and slow-living seekers.",
+    focus: ["Character", "Renovation potential", "Outdoor living"],
+    accent: "oklch(0.62 0.10 60)",   /* warm clay */
+    tint:   "oklch(0.96 0.018 60)",
+    count: 612,
+    swatch: "swatch-3",
+  },
+  {
+    id: "signature",
+    name: "Signature Collection",
+    subtitle: "Comfort & Space",
+    priceMin: 150000, priceMax: 250000,
+    priceLabel: "€150,000 — €250,000",
+    blurb: "Family homes you can move into tomorrow. Well-loved villages, gardens, schools nearby.",
+    focus: ["Move-in ready", "Family homes", "Strong locations"],
+    accent: "oklch(0.52 0.07 165)",   /* sage-teal */
+    tint:   "oklch(0.96 0.014 165)",
+    count: 824,
+    swatch: "swatch-1",
+  },
+  {
+    id: "prestige",
+    name: "Prestige Collection",
+    subtitle: "Exclusive & Modern",
+    priceMin: 250000,
+    priceLabel: "From €250,000",
+    blurb: "Architect-built homes, lake views, vineyards on the doorstep. Where finish matters as much as place.",
+    focus: ["Luxury finish", "Unique views", "Architect-built"],
+    accent: "oklch(0.32 0.04 175)",   /* deep ink */
+    tint:   "oklch(0.94 0.008 175)",
+    count: 187,
+    swatch: "swatch-4",
+  },
+];
+
+function CollectionsSection() {
+  return (
+    <section style={{
+      padding: "40px 32px 64px",
+      maxWidth: 1320,
+      margin: "0 auto",
+    }}>
+      <SectionHead
+        kicker="Find your fit · Three collections"
+        title="Search the way buyers actually think"
+        subtitle="Three budgets. Three lives. One step closer to home."
+        cta={null}
+      />
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+        gap: 18,
+      }}>
+        {COLLECTIONS.map((c, i) => <CollectionCard key={c.id} c={c} index={i} />)}
+      </div>
+    </section>
+  );
+}
+
+function CollectionCard({ c, index }) {
+  const [hover, setHover] = React.useState(false);
+  // Roman numerals for serial markers
+  const numerals = ["I", "II", "III"];
+  return (
+    <a
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={() => { window.location.href = "results.html"; }}
+      style={{
+        position: "relative",
+        display: "flex", flexDirection: "column",
+        borderRadius: "var(--radius-lg)",
+        overflow: "hidden",
+        cursor: "pointer",
+        border: "1px solid var(--line)",
+        background: "var(--bg)",
+        transition: "transform 0.25s ease, box-shadow 0.25s ease",
+        transform: hover ? "translateY(-3px)" : "none",
+        boxShadow: hover ? "0 18px 40px -16px rgba(20,30,28,0.18)" : "none",
+      }}
+    >
+      {/* Image header */}
+      <div style={{ position: "relative", aspectRatio: "4 / 3" }}>
+        <Swatch
+          name={c.swatch}
+          label={c.name}
+          slotId={`collection-${c.id}`}
+          height={"100%"}
+          rounded={0}
+          placeholder={`${c.name} · drop hero photo`}
+        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `linear-gradient(180deg, transparent 0%, transparent 55%, color-mix(in oklch, ${c.accent} 80%, black) 100%)`,
+          mixBlendMode: "multiply",
+          opacity: 0.55,
+        }}/>
+        {/* Roman numeral marker */}
+        <div style={{
+          position: "absolute", top: 16, left: 18,
+          fontFamily: "var(--serif)", fontStyle: "italic",
+          color: "white", fontSize: 28, lineHeight: 1,
+          textShadow: "0 1px 4px rgba(0,0,0,0.3)",
+          letterSpacing: "0.02em",
+        }}>
+          {numerals[index]}
+        </div>
+        {/* Subtitle pill, bottom-left over image */}
+        <div style={{
+          position: "absolute", left: 18, bottom: 18,
+          color: "white",
+        }}>
+          <div className="mono" style={{ color: "rgba(255,255,255,0.85)", marginBottom: 6 }}>
+            {c.priceLabel}
+          </div>
+          <div style={{
+            fontFamily: "var(--serif)", fontSize: 34, lineHeight: 1,
+            letterSpacing: "-0.01em",
+          }}>
+            {c.name}
+          </div>
+          <div style={{ fontSize: 14, fontStyle: "italic", marginTop: 6, opacity: 0.95 }}>
+            {c.subtitle}
+          </div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div style={{
+        padding: "22px 22px 22px",
+        display: "flex", flexDirection: "column", gap: 16,
+        flex: 1,
+      }}>
+        <p style={{
+          margin: 0, fontSize: 15, lineHeight: 1.5, color: "var(--ink-2)",
+          textWrap: "balance",
+        }}>
+          {c.blurb}
+        </p>
+
+        {/* Focus tags */}
+        <ul style={{
+          listStyle: "none", padding: 0, margin: 0,
+          display: "flex", flexDirection: "column", gap: 8,
+        }}>
+          {c.focus.map((f, i) => (
+            <li key={i} style={{
+              display: "flex", alignItems: "center", gap: 10,
+              fontSize: 13.5, color: "var(--ink)",
+            }}>
+              <span style={{
+                width: 5, height: 5, borderRadius: 999,
+                background: c.accent, flexShrink: 0,
+              }}/>
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {/* Footer row */}
+        <div style={{
+          marginTop: "auto",
+          paddingTop: 16,
+          borderTop: "1px solid var(--line)",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+        }}>
+          <div className="mono" style={{ color: "var(--muted)" }}>
+            {c.count} homes
+          </div>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            fontSize: 13.5, fontWeight: 600, color: c.accent,
+          }}>
+            Browse collection
+            <svg width="13" height="13" viewBox="0 0 12 12" style={{
+              transition: "transform 0.2s ease",
+              transform: hover ? "translateX(3px)" : "none",
+            }}>
+              <path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+/* ============================================================
+   REGIONS — kept as an optional, smaller, secondary section.
+   Hidden by default per the new layout (Tweak to toggle on).
+   ============================================================ */
 function RegionsSection() {
   return (
     <section style={{
-      padding: "24px 32px 64px",
+      padding: "24px 32px 56px",
       maxWidth: 1320,
       margin: "0 auto",
     }}>
@@ -276,58 +778,84 @@ function RegionsSection() {
   );
 }
 
-function SectionHead({ kicker, title, cta }) {
+/* ============================================================
+   SECTION HEAD — shared title block
+   ============================================================ */
+function SectionHead({ kicker, title, subtitle, cta }) {
   return (
     <div style={{
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "space-between",
-      marginBottom: 22,
-      gap: 16,
+      marginBottom: 24,
+      gap: 24,
     }}>
-      <div>
-        <div className="mono" style={{ marginBottom: 6 }}>{kicker}</div>
+      <div style={{ maxWidth: 720 }}>
+        <div className="mono" style={{ marginBottom: 8 }}>{kicker}</div>
         <h2 style={{
           fontFamily: "var(--serif)",
           fontWeight: 400,
-          fontSize: 30,
-          lineHeight: 1.1,
+          fontSize: 36,
+          lineHeight: 1.05,
           margin: 0,
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.014em",
           color: "var(--ink)",
         }}>
           {title}
         </h2>
+        {subtitle && (
+          <p style={{
+            margin: "10px 0 0",
+            fontSize: 15, color: "var(--muted)", lineHeight: 1.55,
+            maxWidth: 580,
+          }}>
+            {subtitle}
+          </p>
+        )}
       </div>
-      {cta && <a style={{ fontSize: 13, color: "var(--ink-2)", cursor: "pointer", whiteSpace: "nowrap", borderBottom: "1px solid var(--line-strong)", paddingBottom: 2 }}>{cta}</a>}
+      {cta && <a style={{
+        fontSize: 13, color: "var(--ink-2)", cursor: "pointer", whiteSpace: "nowrap",
+        borderBottom: "1px solid var(--line-strong)", paddingBottom: 2,
+      }}>{cta}</a>}
     </div>
   );
 }
 
+/* ============================================================
+   FOOTER
+   ============================================================ */
 function Footer() {
   return (
     <footer style={{
       borderTop: "1px solid var(--line)",
-      padding: "22px 32px",
-      maxWidth: 1320,
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: 16,
-      color: "var(--muted)",
-      fontSize: 12,
+      marginTop: 24,
     }}>
-      <div className="mono">© 2026 Otthon · Budapest</div>
-      <div style={{ display: "flex", gap: 20 }}>
-        <a style={{ cursor: "pointer" }}>About</a>
-        <a style={{ cursor: "pointer" }}>Privacy</a>
-        <a style={{ cursor: "pointer" }}>Contact</a>
+      <div style={{
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "22px 32px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 16,
+        color: "var(--muted)",
+        fontSize: 12,
+      }}>
+        <div className="mono">© 2026 Otthon · Budapest</div>
+        <div style={{ display: "flex", gap: 20 }}>
+          <a style={{ cursor: "pointer" }}>About</a>
+          <a style={{ cursor: "pointer" }}>For agents</a>
+          <a style={{ cursor: "pointer" }}>Privacy</a>
+          <a style={{ cursor: "pointer" }}>Contact</a>
+        </div>
       </div>
     </footer>
   );
 }
 
+/* ============================================================
+   APP
+   ============================================================ */
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
@@ -336,9 +864,10 @@ function App() {
   return (
     <div data-screen-label="01 Homepage">
       <Header brand={t.brandName} />
-      <Hero searchLayout={t.searchLayout} />
+      <SearchBanner />
       <FeaturedSection />
-      <RegionsSection />
+      <CollectionsSection />
+      {t.showRegions && <RegionsSection />}
       <Footer />
 
       <TweaksPanel>
@@ -356,12 +885,11 @@ function App() {
           options={["terracotta", "sage", "navy", "ochre"]}
           onChange={(v) => setTweak('accent', v)}
         />
-        <TweakSection label="Search" />
-        <TweakRadio
-          label="Layout"
-          value={t.searchLayout}
-          options={["row", "stacked"]}
-          onChange={(v) => setTweak('searchLayout', v)}
+        <TweakSection label="Layout" />
+        <TweakToggle
+          label="Show regions section"
+          value={t.showRegions}
+          onChange={(v) => setTweak('showRegions', v)}
         />
       </TweaksPanel>
     </div>
