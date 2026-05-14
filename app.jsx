@@ -222,10 +222,10 @@ function SearchBanner() {
 /* Quick search points — a tidy panel of pre-built searches. */
 function SearchPoints() {
   const points = [
-    { kicker: "Most popular",  label: "Balaton lakefront",   meta: "428 homes", swatch: "swatch-1" },
-    { kicker: "City",          label: "Budapest, District V", meta: "112 homes", swatch: "swatch-2" },
-    { kicker: "Countryside",   label: "Vineyards & farms",    meta: "247 homes", swatch: "swatch-3" },
-    { kicker: "Under €100k",   label: "Renovation projects",  meta: "612 homes", swatch: "swatch-5" },
+    { kicker: "Most popular",  label: "Balaton lakefront",   meta: "428 homes", swatch: "swatch-1", src: "uploads/search-points/balaton-lakefront.webp" },
+    { kicker: "City",          label: "Budapest, District V", meta: "112 homes", swatch: "swatch-2", src: "uploads/search-points/budapest-district-v.webp" },
+    { kicker: "Countryside",   label: "Vineyards & farms",    meta: "247 homes", swatch: "swatch-3", src: "uploads/search-points/countryside.webp" },
+    { kicker: "Under €100k",   label: "Renovation projects",  meta: "612 homes", swatch: "swatch-5", src: "uploads/search-points/renovation-projects.webp" },
   ];
   return (
     <div style={{
@@ -262,6 +262,7 @@ function SearchPoints() {
               height={"100%"}
               rounded={10}
               placeholder={p.label}
+              src={p.src}
             />
             <div style={{
               position: "absolute", inset: 0,
