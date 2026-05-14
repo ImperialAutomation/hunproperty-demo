@@ -6,23 +6,23 @@ const { useState: useStateD } = React;
 
 function BottomTabBar({ view, setView }) {
   const tabs = [
-    { id: "home",      l: "Home",       icon: HomeIcon },
-    { id: "listings",  l: "Listings",   icon: ListIcon,  badge: 24 },
-    { id: "enquiries", l: "Enquiries",  icon: MailIcon,  badge: 12, dot: true },
-    { id: "profile",   l: "Profile",    icon: UserIcon },
+    { id: "home",      l: "Home",       icon: TabHomeIcon },
+    { id: "listings",  l: "Listings",   icon: TabListIcon,  badge: 24 },
+    { id: "enquiries", l: "Enquiries",  icon: TabMailIcon,  badge: 12 },
+    { id: "profile",   l: "Profile",    icon: TabUserIcon },
   ];
   return (
     <nav className="bottom-tab-bar" style={{
       display: "none",
       position: "fixed",
       left: 0, right: 0, bottom: 0,
-      height: 64,
       background: "var(--bg)",
       borderTop: "1px solid var(--line)",
       zIndex: 50,
-      alignItems: "center",
+      alignItems: "flex-end",
       justifyContent: "space-around",
-      paddingBottom: "env(safe-area-inset-bottom, 0)",
+      padding: "6px 8px",
+      paddingBottom: "calc(6px + env(safe-area-inset-bottom, 0px))",
     }}>
       {tabs.map(tab => {
         const active = view === tab.id;
@@ -31,32 +31,43 @@ function BottomTabBar({ view, setView }) {
           <button key={tab.id}
             onClick={() => setView(tab.id)}
             style={{
-              appearance: "none", border: "none",
-              background: "transparent",
+              appearance: "none",
+              border: active ? "1px solid var(--line)" : "1px solid transparent",
+              background: active ? "var(--accent-soft)" : "transparent",
+              boxShadow: active ? "0 1px 4px rgba(20,30,28,0.06), inset 0 1px 0 rgba(255,255,255,0.7)" : "none",
               display: "flex", flexDirection: "column",
-              alignItems: "center", gap: 3,
-              padding: "6px 12px",
+              alignItems: "center", gap: 4,
+              padding: "6px 14px 5px",
               cursor: "pointer",
-              color: active ? "var(--accent-ink)" : "var(--muted)",
+              color: active ? "var(--accent-ink)" : "var(--muted-2)",
               position: "relative",
-              minWidth: 60,
+              minWidth: 64,
+              borderRadius: 12,
+              transition: "all 0.2s ease",
             }}
           >
-            <span style={{ position: "relative" }}>
+            <span style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24 }}>
               <Icon active={active} />
-              {tab.badge && tab.dot && (
+              {tab.badge && (
                 <span style={{
-                  position: "absolute", top: -3, right: -6,
-                  width: 7, height: 7,
+                  position: "absolute", top: -4, left: "calc(50% + 3px)",
                   background: "var(--accent)",
+                  color: "white",
                   borderRadius: 999,
+                  padding: "0 5px",
+                  fontSize: 9,
+                  fontWeight: 700,
+                  lineHeight: "16px",
+                  minWidth: 16,
+                  textAlign: "center",
                   border: "2px solid var(--bg)",
-                }}/>
+                }}>{tab.badge}</span>
               )}
             </span>
             <span style={{
-              fontSize: 10, fontWeight: active ? 600 : 500,
-              letterSpacing: "0.02em",
+              fontSize: 11, fontWeight: active ? 600 : 500,
+              letterSpacing: "0.01em",
+              lineHeight: 1,
             }}>{tab.l}</span>
           </button>
         );
@@ -266,12 +277,34 @@ function IconBtn({ children }) {
   );
 }
 
-// ── Tiny icon set ───────────────────────────────────────────────────────
+// ── Sidebar icon set (14px, outline only) ───────────────────────────────
 function HomeIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>; }
 function ListIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>; }
 function PlusIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>; }
 function MailIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>; }
 function ChartIcon() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>; }
 function UserIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>; }
+
+// ── Tab bar icon set (20px, outline/filled toggle) ──────────────────────
+function TabHomeIcon({ active }) {
+  return active
+    ? <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
+}
+function TabListIcon({ active }) {
+  return active
+    ? <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>;
+}
+function TabMailIcon({ active }) {
+  return active
+    ? <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="var(--bg)" strokeWidth="1.8"/></svg>
+    : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>;
+}
+function TabUserIcon({ active }) {
+  return active
+    ? <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+    : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+}
 
 Object.assign(window, { Sidebar, BottomTabBar, Topbar, IconBtn });
