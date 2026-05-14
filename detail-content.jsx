@@ -25,7 +25,7 @@ function TitleBlock({ p }) {
       </div>
 
       {/* Quick stats row */}
-      <div style={{
+      <div className="title-stats-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: 0,
@@ -139,7 +139,7 @@ function FeatureTable() {
   ];
   return (
     <Section kicker="Features" title="What's included" anchor="features">
-      <div style={{
+      <div className="feature-table-grid" style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: "24px 40px",
@@ -336,7 +336,7 @@ function LocationMap() {
       </div>
 
       {/* Nearby */}
-      <div style={{
+      <div className="nearby-grid" style={{
         marginTop: 16,
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",

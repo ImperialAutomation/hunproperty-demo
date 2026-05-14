@@ -44,7 +44,7 @@ function Gallery({ p }) {
         maxWidth: 1280,
         margin: "0 auto",
       }}>
-        <div style={{
+        <div className="gallery-grid" style={{
           display: "grid",
           gridTemplateColumns: "2fr 1fr 1fr",
           gridTemplateRows: "260px 260px",
@@ -94,7 +94,7 @@ function Gallery({ p }) {
         </div>
 
         {/* Below-gallery utility row */}
-        <div style={{
+        <div className="gallery-util-row" style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
           padding: "14px 4px 0", gap: 16,
         }}>

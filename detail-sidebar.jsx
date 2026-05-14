@@ -23,7 +23,7 @@ function PriceBlock({ p }) {
       padding: 22,
     }}>
       <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>Asking price</div>
-      <div style={{
+      <div className="price-block-value" style={{
         fontFamily: "var(--serif)",
         fontSize: 44,
         lineHeight: 1,

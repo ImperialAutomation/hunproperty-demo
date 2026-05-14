@@ -20,7 +20,7 @@ function applyDetailAccent(name) {
 
 function Breadcrumb({ p }) {
   return (
-    <nav style={{
+    <nav className="detail-breadcrumb" style={{
       padding: "14px 24px 0",
       maxWidth: 1280,
       margin: "0 auto",
@@ -70,7 +70,7 @@ function PageNav({ p }) {
       zIndex: 30,
       marginTop: 14,
     }}>
-      <div style={{
+      <div className="page-nav-inner" style={{
         maxWidth: 1280,
         margin: "0 auto",
         padding: "0 24px",
@@ -141,7 +141,7 @@ function SimilarSection({ current }) {
           See all {PROPERTIES.filter(x => x.region === current.region).length} {current.region} listings →
         </a>
       </div>
-      <div style={{
+      <div className="similar-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
         gap: 22, rowGap: 32,
@@ -192,7 +192,7 @@ function DetailApp() {
       <Gallery p={p} />
       <PageNav p={p} />
 
-      <main style={{
+      <main className="detail-main" style={{
         maxWidth: 1280,
         margin: "0 auto",
         padding: "0 24px",

@@ -1,0 +1,602 @@
+/* responsive.css — mobile-first overrides for Otthon prototype
+   Because all layout is inline styles, we need !important on media queries.
+   Breakpoints: 768px (tablet), 480px (phone) */
+
+/* ============================================================
+   GLOBAL — padding, font scaling, touch targets
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Reduce section padding */
+  section,
+  [data-screen-label] section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Footer padding */
+  footer > div {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Clamp heading sizes */
+  h1 {
+    font-size: clamp(32px, 8vw, 56px) !important;
+  }
+  h2 {
+    font-size: clamp(24px, 6vw, 36px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(28px, 9vw, 42px) !important;
+  }
+}
+
+/* ============================================================
+   HEADER — hamburger on mobile (driven by JS toggle)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Header inner container */
+  header > div {
+    padding: 0 16px !important;
+  }
+
+  /* Hide desktop nav, show hamburger */
+  header nav.desktop-nav {
+    display: none !important;
+  }
+  header button.hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Mobile drawer */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 80vw;
+    background: var(--bg);
+    border-left: 1px solid var(--line);
+    box-shadow: -12px 0 40px rgba(20,30,28,0.15);
+    z-index: 100;
+    padding: 72px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+  }
+  .mobile-drawer.open {
+    transform: translateX(0);
+  }
+  .mobile-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,30,28,0.4);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .mobile-drawer-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mobile-drawer a,
+  .mobile-drawer button {
+    font-size: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-drawer .drawer-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+}
+
+@media (min-width: 769px) {
+  /* Ensure hamburger is hidden on desktop */
+  header button.hamburger-btn {
+    display: none !important;
+  }
+  .mobile-drawer,
+  .mobile-drawer-overlay {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — SearchBanner
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* SearchBanner: 2-col grid → 1-col stack */
+  [data-screen-label="01 Homepage"] section:first-of-type > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* SearchPoints panel — full width */
+  [data-screen-label="01 Homepage"] section:first-of-type > div:first-child > div:last-child {
+    order: 2;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — FeaturedSection
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Hero + OverOns grid → stack */
+  .featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* OverOns panel — remove min-height */
+  .featured-grid > aside {
+    min-height: auto !important;
+  }
+
+  /* Hero card — reduce min-height */
+  .featured-grid > article {
+    min-height: 400px !important;
+  }
+
+  /* Supporting row: 4 cols → 2 cols */
+  .supporting-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .supporting-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — HeroPropertyCard footer
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .hero-card-footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .hero-card-footer > div:last-child {
+    text-align: left !important;
+  }
+  /* Price font size */
+  .hero-card-price {
+    font-size: clamp(28px, 7vw, 38px) !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — Collections (3 cols → 1 col)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .collections-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — Regions (6 cols → 2 cols on mobile)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .regions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .regions-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — SectionHead: stack title + CTA
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .section-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+}
+
+/* ============================================================
+   HOMEPAGE — Footer: stack on mobile
+   ============================================================ */
+
+@media (max-width: 480px) {
+  footer > div {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — FilterBar: horizontal scroll
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .filter-bar-inner {
+    flex-wrap: wrap !important;
+    padding: 10px 16px !important;
+    gap: 6px !important;
+  }
+  /* Hide separator and flex spacer on mobile */
+  .filter-sep,
+  .filter-bar-inner > div[style*="flex: 1"] {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — Toolbar: stack on mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .results-toolbar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 12px 16px !important;
+  }
+  /* Hide desktop Grid/List/Map toggle on mobile — replaced by mobile-map-toggle */
+  .view-toggle {
+    display: none !important;
+  }
+  /* Sort takes remaining space, map toggle stays compact */
+  .results-toolbar > div:last-child {
+    width: 100% !important;
+    gap: 8px !important;
+  }
+  .results-toolbar > div:last-child > div:first-child {
+    flex: 1 !important;
+  }
+  .results-toolbar > div:last-child > div:first-child > button {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — MapView: stack (list on top, toggle for map)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .map-view-grid {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* Map panel — responsive positioning */
+  .map-view-map {
+    height: 60vh !important;
+    min-height: 300px !important;
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* Map toggle: list always visible. Map shown above list when toggled on. */
+  .map-view-grid.mobile-show-map .map-view-map {
+    height: 45vh !important;
+    min-height: 260px !important;
+    position: relative !important;
+    top: auto !important;
+    order: -1 !important;
+  }
+
+  /* List panel mobile */
+  .map-view-list {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    border-right: none !important;
+    padding: 16px !important;
+  }
+
+  /* Mobile map icon toggle in toolbar */
+  .mobile-map-btn {
+    display: flex !important;
+  }
+
+  /* HorizontalCard: stack image above info */
+  .map-view-grid article {
+    grid-template-columns: 1fr !important;
+  }
+  .map-view-grid article > div:first-child {
+    height: 200px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-map-btn {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — HorizontalCard: stack on mobile (list view)
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .horizontal-card {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — GridView padding
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .grid-view {
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+}
+
+/* ============================================================
+   RESULTS PAGE — Results header
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .results-header-inner {
+    padding: 0 16px !important;
+  }
+  /* Hide breadcrumb on mobile */
+  .results-breadcrumb {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Gallery grid
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 300px !important;
+  }
+  /* Hide thumbs on mobile, show only hero */
+  .gallery-grid > div:not(:first-child) {
+    display: none !important;
+  }
+  /* Hero spans single row */
+  .gallery-grid > div:first-child {
+    grid-row: 1 !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Breadcrumb
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .detail-breadcrumb {
+    padding: 10px 16px 0 !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+  /* Hide intermediate crumbs, show first + last */
+  .detail-breadcrumb > span:not(:first-child):not(:last-child):not(:nth-child(2)) {
+    display: none !important;
+  }
+  .detail-breadcrumb > span:last-child {
+    margin-left: 0 !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — PageNav sticky strip
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .page-nav-inner {
+    padding: 0 16px !important;
+    gap: 16px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  .page-nav-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .page-nav-inner > a {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Main 2-column layout → stack
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .detail-main {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 0 16px !important;
+  }
+
+  /* Sidebar: unstick and full-width */
+  .detail-main > aside {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — TitleBlock quick stats
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .title-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  .title-stats-grid > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+  }
+  /* Add bottom border instead for 2x2 grid */
+  .title-stats-grid > div:nth-child(-n+2) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — FeatureTable (2 cols → 1 col)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .feature-table-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Location nearby grid
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .nearby-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nearby-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Similar properties
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .similar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .similar-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — Gallery utility row
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .gallery-util-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+}
+
+/* ============================================================
+   DETAIL PAGE — PriceBlock
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .price-block-value {
+    font-size: clamp(32px, 9vw, 44px) !important;
+  }
+}
+
+/* ============================================================
+   TWEAKS PANEL — bottom sheet on mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .twk-panel {
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-height: 60vh !important;
+    border-radius: 14px 14px 0 0 !important;
+    transform-origin: bottom center !important;
+  }
+}
+
+/* ============================================================
+   TOUCH TARGETS — minimum 44px
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Language picker button */
+  header button[aria-label],
+  .mobile-drawer button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Heart buttons on cards */
+  article button[style*="border-radius: 999"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* ============================================================
+   SEARCH BAR — responsive tweaks
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Force search bar to stacked layout on mobile */
+  .search-bar-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .search-bar-wrap > div:first-child {
+    grid-column: 1 / -1 !important;
+    border-right: none !important;
+  }
+  .search-bar-wrap > button:last-of-type {
+    grid-column: 1 / -1 !important;
+  }
+  /* Autocomplete dropdown full width */
+  .search-autocomplete {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

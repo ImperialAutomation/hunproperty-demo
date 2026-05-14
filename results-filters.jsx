@@ -13,7 +13,7 @@ function FilterBar({ state, setState }) {
       top: "var(--header-h)",
       zIndex: 40,
     }}>
-      <div style={{
+      <div className="filter-bar-inner" style={{
         padding: "12px 24px",
         display: "flex",
         alignItems: "center",
@@ -72,7 +72,7 @@ function FilterBar({ state, setState }) {
 }
 
 function Sep() {
-  return <span style={{ width: 1, height: 22, background: "var(--line)", margin: "0 2px" }} />;
+  return <span className="filter-sep" style={{ width: 1, height: 22, background: "var(--line)", margin: "0 2px" }} />;
 }
 
 function SegToggle({ value, onChange, options }) {

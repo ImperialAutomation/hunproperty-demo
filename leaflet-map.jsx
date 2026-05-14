@@ -15,28 +15,28 @@ const HUNGARY_CENTER = [47.16, 19.5];
 
 // Region coords (lat, lng) + listing counts
 const REGION_PINS = [
-  { id: "budapest", name: "Budapest",      lat: 47.4979, lng: 19.0402, count: 1284, primary: true },
-  { id: "balaton",  name: "Lake Balaton",  lat: 46.8480, lng: 17.7280, count: 108,  primary: true },
-  { id: "danube",   name: "Danube Bend",   lat: 47.7900, lng: 19.0700, count: 187 },
-  { id: "sopron",   name: "Sopron / West", lat: 47.6850, lng: 16.5840, count: 224 },
-  { id: "pecs",     name: "Pécs / South",  lat: 46.0727, lng: 18.2330, count: 158 },
-  { id: "puszta",   name: "Great Plain",   lat: 46.9070, lng: 19.6840, count: 96  },
+  { id: "budapest", name: "Budapest", lat: 47.4979, lng: 19.0402, count: 1284, primary: true },
+  { id: "balaton", name: "Lake Balaton", lat: 46.8480, lng: 17.7280, count: 108, primary: true },
+  { id: "danube", name: "Danube Bend", lat: 47.7900, lng: 19.0700, count: 187 },
+  { id: "sopron", name: "Sopron / West", lat: 47.6850, lng: 16.5840, count: 224 },
+  { id: "pecs", name: "Pécs / South", lat: 46.0727, lng: 18.2330, count: 158 },
+  { id: "puszta", name: "Great Plain", lat: 46.9070, lng: 19.6840, count: 96 },
   { id: "debrecen", name: "Debrecen / East", lat: 47.5316, lng: 21.6273, count: 142 },
-  { id: "tokaj",    name: "Tokaj / NE",    lat: 48.1218, lng: 21.4090, count: 38  },
+  { id: "tokaj", name: "Tokaj / NE", lat: 48.1218, lng: 21.4090, count: 38 },
 ];
 
 // Property lat/lng — legacy fixture data, kept as a fallback for any
 // property without lat/lng on the object itself. New listings carry
 // p.lat / p.lng directly.
 const PROP_LATLNG = {
-  "kesz-villa":     { lat: 46.7686, lng: 17.2444 },
-  "bp-d5-apt":      { lat: 47.4979, lng: 19.0521 },
-  "somogy-farm":    { lat: 46.4790, lng: 17.6510 },
-  "siofok-new":     { lat: 46.9050, lng: 18.0594 },
-  "heviz-holiday":  { lat: 46.7886, lng: 17.1864 },
+  "kesz-villa": { lat: 46.7686, lng: 17.2444 },
+  "bp-d5-apt": { lat: 47.4979, lng: 19.0521 },
+  "somogy-farm": { lat: 46.4790, lng: 17.6510 },
+  "siofok-new": { lat: 46.9050, lng: 18.0594 },
+  "heviz-holiday": { lat: 46.7886, lng: 17.1864 },
   "badacsony-plot": { lat: 46.7944, lng: 17.4944 },
-  "pecs-town":      { lat: 46.0727, lng: 18.2330 },
-  "sopron-apt":     { lat: 47.6850, lng: 16.5840 },
+  "pecs-town": { lat: 46.0727, lng: 18.2330 },
+  "sopron-apt": { lat: 47.6850, lng: 16.5840 },
 };
 
 // Deterministic per-id 0..1 hash so coincident lat/lng (Hévíz, Keszthely
@@ -204,7 +204,7 @@ function HungaryRegionMap({ height = "auto" }) {
         display: "flex", alignItems: "center", gap: 6,
         zIndex: 500, pointerEvents: "none",
       }}>
-        <span style={{ width: 6, height: 6, borderRadius: 999, background: "var(--accent)" }}/>
+        <span style={{ width: 6, height: 6, borderRadius: 999, background: "var(--accent)" }} />
         Tap a region to filter
       </div>
     </div>
@@ -228,7 +228,8 @@ function HungaryPropertyMap({ properties, hoverId, onHover, onPick }) {
       attributionControl: true,
       zoomSnap: 0.5,
     });
-    map.fitBounds(HUNGARY_BOUNDS, { padding: [20, 20] });
+    // Center on Lake Balaton where most demo listings are clustered
+    map.setView([46.75, 17.25], 9);
 
     L.tileLayer(CARTO_TILES, {
       attribution: CARTO_ATTRIB,
@@ -237,7 +238,9 @@ function HungaryPropertyMap({ properties, hoverId, onHover, onPick }) {
     }).addTo(map);
 
     mapRef.current = map;
-    return () => { map.remove(); mapRef.current = null; };
+    // Expose for external invalidateSize calls (e.g. mobile toggle)
+    window.__hunPropertyMap = map;
+    return () => { map.remove(); mapRef.current = null; window.__hunPropertyMap = null; };
   }, []);
 
   // Sync markers with properties
@@ -272,8 +275,8 @@ function HungaryPropertyMap({ properties, hoverId, onHover, onPick }) {
       });
       const m = L.marker([lat, lng], { icon, riseOnHover: true }).addTo(map);
       m.on("mouseover", () => onHover && onHover(p.id));
-      m.on("mouseout",  () => onHover && onHover(null));
-      m.on("click",     () => onPick && onPick(p.id));
+      m.on("mouseout", () => onHover && onHover(null));
+      m.on("click", () => onPick && onPick(p.id));
       markersRef.current[p.id] = m;
     });
   }, [properties]);
@@ -308,7 +311,7 @@ function HungaryPropertyMap({ properties, hoverId, onHover, onPick }) {
         cursor: "pointer",
       }}>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
         </svg>
         Search this area
       </div>

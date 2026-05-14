@@ -22,9 +22,9 @@ function applyResultsAccent(name) {
 }
 
 // ── Toolbar with count / sort / view toggle ─────────────────────────────
-function Toolbar({ count, sort, setSort, view, setView }) {
+function Toolbar({ count, sort, setSort, view, setView, mobileShowMap, setMobileShowMap }) {
   return (
-    <div style={{
+    <div className="results-toolbar" style={{
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "16px 24px",
       borderBottom: "1px solid var(--line)",
@@ -44,8 +44,34 @@ function Toolbar({ count, sort, setSort, view, setView }) {
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         {/* Sort */}
         <SortMenu sort={sort} setSort={setSort} />
-        {/* View toggle */}
+        {/* View toggle (desktop) */}
         <ViewToggle view={view} setView={setView} />
+        {/* Map toggle (mobile only — hidden on desktop via CSS) */}
+        <button
+          className="mobile-map-btn"
+          onClick={() => setMobileShowMap(v => !v)}
+          title={mobileShowMap ? "Hide map" : "Show map"}
+          style={{
+            display: "none",
+            appearance: "none",
+            width: 38, height: 38,
+            borderRadius: 8,
+            border: "1px solid",
+            borderColor: mobileShowMap ? "var(--ink)" : "var(--line-strong)",
+            background: mobileShowMap ? "var(--ink)" : "var(--bg)",
+            color: mobileShowMap ? "var(--bg)" : "var(--ink)",
+            cursor: "pointer",
+            alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+            transition: "background 0.15s, color 0.15s, border-color 0.15s",
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/>
+            <line x1="9" y1="4" x2="9" y2="18"/>
+            <line x1="15" y1="6" x2="15" y2="20"/>
+          </svg>
+        </button>
       </div>
     </div>
   );
@@ -116,7 +142,7 @@ function ViewToggle({ view, setView }) {
     { id: "map",  icon: <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/></svg>, l: "Map" },
   ];
   return (
-    <div style={{ display: "inline-flex", background: "var(--surface)", borderRadius: 8, padding: 3 }}>
+    <div className="view-toggle" style={{ display: "inline-flex", background: "var(--surface)", borderRadius: 8, padding: 3 }}>
       {views.map(v => {
         const on = view === v.id;
         return (
@@ -147,6 +173,7 @@ function HorizontalCard({ p, compact, hovered, onHover, onClick }) {
   const [fav, setFav] = useStateR(false);
   return (
     <article
+      className="horizontal-card"
       onMouseEnter={() => onHover && onHover(p.id)}
       onMouseLeave={() => onHover && onHover(null)}
       onClick={() => { window.location.href = "detail.html"; }}
@@ -260,7 +287,7 @@ function HeartIconSmall({ filled }) {
 // ── Views ───────────────────────────────────────────────────────────────
 function GridView({ properties }) {
   return (
-    <div style={{
+    <div className="grid-view" style={{
       padding: "22px 24px 60px",
       display: "grid",
       gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
@@ -279,41 +306,53 @@ function ListView({ properties }) {
   );
 }
 
-function MapView({ properties }) {
+function MapView({ properties, mobileShowMap }) {
   const [hover, setHover] = useStateR(null);
+  // Check if we're on mobile (matches CSS breakpoint)
+  const isMobile = React.useMemo(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches
+  , []);
+  // On mobile: only mount the map when the user toggles to it.
+  // On desktop: always mount both panels.
+  const showMap = !isMobile || mobileShowMap;
+
   return (
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "minmax(440px, 1fr) minmax(0, 1.15fr)",
-      height: "calc(100vh - var(--header-h) - var(--filterbar-h) - 65px)",
-      minHeight: 640,
-    }}>
-      {/* List */}
-      <div style={{
-        overflowY: "auto",
-        padding: "16px 18px 24px",
-        borderRight: "1px solid var(--line)",
-        background: "var(--bg)",
+    <div>
+      <div className={`map-view-grid ${mobileShowMap ? "mobile-show-map" : "mobile-show-list"}`} style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(440px, 1fr) minmax(0, 1.15fr)",
+        height: "calc(100vh - var(--header-h) - var(--filterbar-h) - 65px)",
+        minHeight: 640,
       }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {properties.map(p => (
-            <HorizontalCard
-              key={p.id}
-              p={p}
-              compact
-              hovered={hover === p.id}
+        {/* List */}
+        <div className="map-view-list" style={{
+          overflowY: "auto",
+          padding: "16px 18px 24px",
+          borderRight: "1px solid var(--line)",
+          background: "var(--bg)",
+        }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {properties.map(p => (
+              <HorizontalCard
+                key={p.id}
+                p={p}
+                compact
+                hovered={hover === p.id}
+                onHover={setHover}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Map (sticky) — on mobile, only mounted when user selects Map */}
+        {showMap && (
+          <div className="map-view-map" style={{ position: "sticky", top: "calc(var(--header-h) + var(--filterbar-h) + 65px)", height: "calc(100vh - var(--header-h) - var(--filterbar-h) - 65px)", minHeight: 640 }}>
+            <HungaryPropertyMap
+              properties={properties}
+              hoverId={hover}
               onHover={setHover}
             />
-          ))}
-        </div>
-      </div>
-      {/* Map (sticky) */}
-      <div style={{ position: "sticky", top: "calc(var(--header-h) + var(--filterbar-h) + 65px)", height: "calc(100vh - var(--header-h) - var(--filterbar-h) - 65px)", minHeight: 640 }}>
-        <HungaryPropertyMap
-          properties={properties}
-          hoverId={hover}
-          onHover={setHover}
-        />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -335,6 +374,7 @@ function ResultsApp() {
     extras: {},
   });
   const [sort, setSort] = useStateR("newest");
+  const [mobileShowMap, setMobileShowMap] = useStateR(false);
 
   React.useEffect(() => { applyResultsAccent(t.accent); }, [t.accent]);
 
@@ -354,11 +394,11 @@ function ResultsApp() {
     <div data-screen-label="02 Search results" style={{ minHeight: "100vh" }}>
       <ResultsHeader />
       <FilterBar state={filterState} setState={setFilterState} />
-      <Toolbar count={totalCount} sort={sort} setSort={setSort} view={t.view} setView={(v) => setTweak('view', v)} />
+      <Toolbar count={totalCount} sort={sort} setSort={setSort} view={t.view} setView={(v) => setTweak('view', v)} mobileShowMap={mobileShowMap} setMobileShowMap={setMobileShowMap} />
 
       {t.view === "grid" && <GridView properties={sorted} />}
       {t.view === "list" && <ListView properties={sorted} />}
-      {t.view === "map"  && <MapView  properties={sorted} />}
+      {t.view === "map"  && <MapView  properties={sorted} mobileShowMap={mobileShowMap} />}
 
       <TweaksPanel>
         <TweakSection label="Palette" />

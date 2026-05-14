@@ -30,6 +30,7 @@ function applyAccent(name) {
    HEADER — slim, white, brand left / nav right
    ============================================================ */
 function Header({ brand }) {
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
     <header style={{
       height: "var(--header-h)",
@@ -75,7 +76,7 @@ function Header({ brand }) {
           </span>
         </a>
 
-        <nav style={{ display: "flex", alignItems: "center", gap: 24, fontSize: 14 }}>
+        <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 24, fontSize: 14 }}>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Buy</a>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Collections</a>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Regions</a>
@@ -95,6 +96,41 @@ function Header({ brand }) {
             <svg width="11" height="11" viewBox="0 0 12 12"><path d="M3 2l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </nav>
+
+        {/* Hamburger — hidden on desktop via CSS */}
+        <button className="hamburger-btn" onClick={() => setDrawerOpen(true)} style={{
+          display: "none",
+          appearance: "none", border: "none", background: "transparent",
+          width: 44, height: 44,
+          alignItems: "center", justifyContent: "center",
+          cursor: "pointer", color: "var(--ink)",
+        }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile drawer overlay */}
+      <div className={`mobile-drawer-overlay ${drawerOpen ? "open" : ""}`} onClick={() => setDrawerOpen(false)} />
+      {/* Mobile drawer */}
+      <div className={`mobile-drawer ${drawerOpen ? "open" : ""}`}>
+        <button className="drawer-close" onClick={() => setDrawerOpen(false)}>×</button>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Buy</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Collections</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Regions</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>About</a>
+        <div style={{ padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
+          <LangPicker />
+        </div>
+        <a href="dashboard.html" style={{
+          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+          color: "var(--bg)", background: "var(--ink)",
+          padding: "12px 16px", borderRadius: 999,
+          fontSize: 14, fontWeight: 600, cursor: "pointer", marginTop: 8,
+        }}>
+          For agents
+        </a>
       </div>
     </header>
   );
@@ -313,7 +349,7 @@ function FeaturedSection() {
       />
 
       {/* Magazine layout: hero (left) + Over ons (right) */}
-      <div style={{
+      <div className="featured-grid" style={{
         display: "grid",
         gridTemplateColumns: "minmax(0, 2fr) minmax(0, 1fr)",
         gap: 22,
@@ -324,7 +360,7 @@ function FeaturedSection() {
       </div>
 
       {/* Supporting row — 4 across */}
-      <div style={{
+      <div className="supporting-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
         gap: 22,
@@ -412,7 +448,7 @@ function HeroPropertyCard({ p }) {
       </div>
 
       {/* Body */}
-      <div style={{
+      <div className="hero-card-footer" style={{
         padding: "20px 24px 22px",
         display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24,
         borderTop: "1px solid var(--line)",
@@ -447,7 +483,7 @@ function HeroPropertyCard({ p }) {
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
           <div className="mono" style={{ marginBottom: 4 }}>Asking</div>
-          <div style={{
+          <div className="hero-card-price" style={{
             fontFamily: "var(--serif)", fontSize: 38, lineHeight: 1,
             color: "var(--ink)",
           }}>
@@ -616,7 +652,7 @@ function CollectionsSection() {
         subtitle="Three budgets. Three lives. One step closer to home."
         cta={null}
       />
-      <div style={{
+      <div className="collections-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
         gap: 18,
@@ -772,7 +808,7 @@ function RegionsSection() {
         title="Popular places to live"
         cta="See all regions →"
       />
-      <div style={{
+      <div className="regions-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(6, minmax(0, 1fr))",
         gap: 14,
@@ -788,7 +824,7 @@ function RegionsSection() {
    ============================================================ */
 function SectionHead({ kicker, title, subtitle, cta }) {
   return (
-    <div style={{
+    <div className="section-head" style={{
       display: "flex",
       alignItems: "flex-end",
       justifyContent: "space-between",

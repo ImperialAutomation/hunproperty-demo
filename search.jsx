@@ -59,6 +59,7 @@ function SearchBar({ layout = "row" }) {
       {/* Search row */}
       <div
         ref={wrapRef}
+        className="search-bar-wrap"
         style={{
           background: "var(--bg)",
           border: "1px solid var(--line-strong)",
@@ -140,7 +141,7 @@ function SearchBar({ layout = "row" }) {
 
         {/* Autocomplete dropdown */}
         {focused && (
-          <div style={{
+          <div className="search-autocomplete" style={{
             position: "absolute",
             top: "calc(100% + 8px)",
             left: 0,
