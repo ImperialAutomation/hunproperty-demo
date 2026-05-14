@@ -81,7 +81,7 @@ function Header({ brand }) {
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Regions</a>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>About</a>
           <LangPicker />
-          <a style={{
+          <a href="dashboard.html" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
             color: "var(--ink)",
             border: "1px solid var(--line-strong)",
