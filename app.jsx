@@ -571,6 +571,7 @@ const COLLECTIONS = [
     tint:   "oklch(0.96 0.018 60)",
     count: 612,
     swatch: "swatch-3",
+    src: "uploads/collections/essential.webp",
   },
   {
     id: "signature",
@@ -584,6 +585,7 @@ const COLLECTIONS = [
     tint:   "oklch(0.96 0.014 165)",
     count: 824,
     swatch: "swatch-1",
+    src: "uploads/collections/signature.webp",
   },
   {
     id: "prestige",
@@ -597,6 +599,7 @@ const COLLECTIONS = [
     tint:   "oklch(0.94 0.008 175)",
     count: 187,
     swatch: "swatch-4",
+    src: "uploads/collections/prestige.webp",
   },
 ];
 
@@ -655,6 +658,7 @@ function CollectionCard({ c, index }) {
           height={"100%"}
           rounded={0}
           placeholder={`${c.name} · drop hero photo`}
+          src={c.src}
         />
         <div style={{
           position: "absolute", inset: 0,
