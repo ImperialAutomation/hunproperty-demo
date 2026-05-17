@@ -152,29 +152,7 @@ function SimilarSection({ current }) {
   );
 }
 
-function DetailFooter() {
-  return (
-    <footer style={{
-      borderTop: "1px solid var(--line)",
-      padding: "22px 24px",
-      maxWidth: 1280,
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: 16,
-      color: "var(--muted)",
-      fontSize: 12,
-    }}>
-      <div className="mono">© 2026 Otthon · Budapest</div>
-      <div style={{ display: "flex", gap: 20 }}>
-        <a style={{ cursor: "pointer" }}>About</a>
-        <a style={{ cursor: "pointer" }}>Privacy</a>
-        <a style={{ cursor: "pointer" }}>Contact</a>
-      </div>
-    </footer>
-  );
-}
+// Footer is loaded from shared footer.jsx
 
 function DetailApp() {
   const [t, setTweak] = useTweaks(DETAIL_TWEAK_DEFAULTS);
@@ -206,7 +184,7 @@ function DetailApp() {
       </main>
 
       <SimilarSection current={p} />
-      <DetailFooter />
+      <Footer />
 
       <TweaksPanel>
         <TweakSection label="Palette" />

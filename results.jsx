@@ -400,6 +400,8 @@ function ResultsApp() {
       {t.view === "list" && <ListView properties={sorted} />}
       {t.view === "map"  && <MapView  properties={sorted} mobileShowMap={mobileShowMap} />}
 
+      <Footer />
+
       <TweaksPanel>
         <TweakSection label="Palette" />
         <TweakRadio label="Accent" value={t.accent}

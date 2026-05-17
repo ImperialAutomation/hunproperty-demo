@@ -104,7 +104,7 @@ function Sidebar({ view, setView }) {
           </svg>
         </span>
         <span style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-          <span style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--ink)" }}>Otthon</span>
+          <span style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--ink)" }}>Otia</span>
           <span className="mono" style={{ marginTop: 3, color: "var(--muted-2)", fontSize: 9.5 }}>Agent console</span>
         </span>
       </a>
@@ -215,7 +215,7 @@ function Topbar({ title, subtitle, actions }) {
             <rect x="4.2" y="9" width="7.6" height="4.5" fill="white" />
           </svg>
         </span>
-        <span style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Otthon</span>
+        <span style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Otia</span>
       </a>
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
         <h1 style={{

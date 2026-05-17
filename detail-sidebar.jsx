@@ -252,7 +252,7 @@ function TrustStrip() {
       color: "var(--muted)",
     }}>
       {[
-        ["Verified by Otthon", "Title and zoning checked"],
+        ["Verified by Otia", "Title and zoning checked"],
         ["No buyer fees", "You only pay the price agreed"],
         ["Multilingual support", "Help through the whole transaction"],
       ].map(([t, s]) => (

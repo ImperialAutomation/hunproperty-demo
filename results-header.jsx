@@ -4,7 +4,7 @@
 
 const { useState: useStateH, useRef: useRefH, useEffect: useEffectH } = React;
 
-function ResultsHeader({ brand = "Otthon" }) {
+function ResultsHeader({ brand = "Otia" }) {
   const [drawerOpen, setDrawerOpen] = useStateH(false);
   return (
     <header style={{
@@ -24,12 +24,7 @@ function ResultsHeader({ brand = "Otthon" }) {
         gap: 24,
       }}>
         <a href="index.html" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ width: 26, height: 26, borderRadius: 6, background: "var(--ink)", display: "grid", placeItems: "center" }}>
-            <svg width="14" height="14" viewBox="0 0 16 16">
-              <path d="M2 9 L8 3 L14 9" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-              <rect x="4.2" y="9" width="7.6" height="4.5" fill="white" />
-            </svg>
-          </span>
+          <img src="uploads/logo-otia.svg" alt="Otia" style={{ width: 30, height: 30 }}/>
           <span style={{ fontFamily: "var(--serif)", fontSize: 24, lineHeight: 1, color: "var(--ink)" }}>{brand}</span>
         </a>
 
@@ -49,7 +44,7 @@ function ResultsHeader({ brand = "Otthon" }) {
             Saved <span className="mono" style={{ color: "var(--muted-2)" }}>3</span>
           </a>
           <span className="mono">EN ▾</span>
-          <a href="dashboard.html" style={{ border: "1px solid var(--line-strong)", padding: "6px 12px", borderRadius: 999, cursor: "pointer", fontWeight: 500 }}>For agents</a>
+          <a href="dashboard.html" style={{ background: "var(--accent)", color: "white", border: "none", padding: "8px 16px", borderRadius: 999, cursor: "pointer", fontWeight: 600, fontSize: 13 }}>List your property</a>
         </nav>
 
         {/* Hamburger — hidden on desktop via CSS */}
@@ -82,11 +77,11 @@ function ResultsHeader({ brand = "Otthon" }) {
         </div>
         <a href="dashboard.html" style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-          color: "var(--bg)", background: "var(--ink)",
+          color: "white", background: "var(--accent)",
           padding: "12px 16px", borderRadius: 999,
           fontSize: 14, fontWeight: 600, cursor: "pointer", marginTop: 8,
         }}>
-          For agents
+          List your property
         </a>
       </div>
     </header>
