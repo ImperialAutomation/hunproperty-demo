@@ -4,7 +4,7 @@
 //         three Collections (Essential / Signature / Prestige) → footer.
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "brandName": "Otthon",
+  "brandName": "Otia",
   "accent": "terracotta",
   "featuredLayout": "magazine",
   "showRegions": false,
@@ -18,7 +18,7 @@ const ACCENTS = {
   ochre:      { primary: "oklch(0.66 0.12 85)",  ink: "oklch(0.46 0.10 85)" },
 };
 
-const BRAND_NAMES = ["Otthon", "Páva", "Lakhely", "Magyaria"];
+const BRAND_NAMES = ["Otia", "Otthon", "Páva", "Lakhely", "Magyaria"];
 
 function applyAccent(name) {
   const a = ACCENTS[name] || ACCENTS.terracotta;
@@ -51,17 +51,9 @@ function Header({ brand }) {
         gap: 24,
       }}>
         <a style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
-          <span style={{
-            width: 26, height: 26,
-            borderRadius: 6,
-            background: "var(--ink)",
-            display: "grid", placeItems: "center",
-          }}>
-            <svg width="14" height="14" viewBox="0 0 16 16">
-              <path d="M2 9 L8 3 L14 9" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-              <rect x="4.2" y="9" width="7.6" height="4.5" fill="white" />
-            </svg>
-          </span>
+          <img src="uploads/logo-otia.svg" alt="Otia" style={{
+            width: 30, height: 30,
+          }}/>
           <span style={{
             fontFamily: "var(--serif)",
             fontSize: 24,
@@ -78,21 +70,22 @@ function Header({ brand }) {
 
         <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 24, fontSize: 14 }}>
           <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Buy</a>
-          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Collections</a>
-          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Regions</a>
-          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>About</a>
+          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Rent</a>
+          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>New Build</a>
+          <a style={{ color: "var(--ink-2)", cursor: "pointer" }}>Inspiration</a>
           <LangPicker />
           <a href="dashboard.html" style={{
             display: "inline-flex", alignItems: "center", gap: 6,
-            color: "var(--ink)",
-            border: "1px solid var(--line-strong)",
-            padding: "6px 12px",
+            color: "white",
+            background: "var(--accent)",
+            border: "none",
+            padding: "8px 16px",
             borderRadius: 999,
             fontSize: 13,
-            fontWeight: 500,
+            fontWeight: 600,
             cursor: "pointer",
           }}>
-            For agents
+            List your property
             <svg width="11" height="11" viewBox="0 0 12 12"><path d="M3 2l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </nav>
@@ -117,19 +110,19 @@ function Header({ brand }) {
       <div className={`mobile-drawer ${drawerOpen ? "open" : ""}`}>
         <button className="drawer-close" onClick={() => setDrawerOpen(false)}>×</button>
         <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Buy</a>
-        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Collections</a>
-        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Regions</a>
-        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>About</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Rent</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>New Build</a>
+        <a style={{ color: "var(--ink)", cursor: "pointer", fontWeight: 500 }} onClick={() => setDrawerOpen(false)}>Inspiration</a>
         <div style={{ padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
           <LangPicker />
         </div>
         <a href="dashboard.html" style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-          color: "var(--bg)", background: "var(--ink)",
+          color: "white", background: "var(--accent)",
           padding: "12px 16px", borderRadius: 999,
           fontSize: 14, fontWeight: 600, cursor: "pointer", marginTop: 8,
         }}>
-          For agents
+          List your property
         </a>
       </div>
     </header>
@@ -196,61 +189,175 @@ function LangPicker() {
 }
 
 /* ============================================================
-   SEARCH BANNER — compact, white, top of page
-   Tagline + quick search points (chips) + search bar.
+   HERO CAROUSEL — full-width mood images with floating search bar
    ============================================================ */
-function SearchBanner() {
-  return (
-    <section style={{
-      padding: "44px 32px 36px",
-      maxWidth: 1320,
-      margin: "0 auto",
-    }}>
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-        gap: 64,
-        alignItems: "center",
-      }}>
-        {/* LEFT — copy + search */}
-        <div>
-          <div className="mono" style={{ marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{
-              display: "inline-block", width: 6, height: 6, borderRadius: 999,
-              background: "var(--accent)",
-            }}/>
-            Live · 2,461 listings across Hungary
-          </div>
-          <h1 style={{
-            fontFamily: "var(--serif)",
-            fontWeight: 400,
-            fontSize: 56,
-            lineHeight: 1.0,
-            margin: 0,
-            letterSpacing: "-0.018em",
-            color: "var(--ink)",
-            textWrap: "balance",
-          }}>
-            A home in Hungary,<br/>
-            <em style={{ fontStyle: "italic", color: "var(--accent-ink)" }}>for the life you want to live.</em>
-          </h1>
-          <p style={{
-            margin: "18px 0 26px",
-            fontSize: 16,
-            lineHeight: 1.55,
-            color: "var(--muted)",
-            maxWidth: 520,
-          }}>
-            From a stone cottage by Lake Balaton to a modern villa above the
-            Danube — find homes hand-picked for character, light, and place.
-          </p>
+const HERO_SLIDES = [
+  { src: "uploads/hero/budapest-parliament.jpg", alt: "Budapest Parliament at sunrise over the Danube" },
+  { src: "uploads/hero/balaton-boat.jpg",        alt: "Boat on Lake Balaton at golden hour" },
+  { src: "uploads/hero/hungarian-hills.jpg",     alt: "Rolling hills of the Hungarian countryside" },
+  { src: "uploads/hero/green-waterfront.jpg",    alt: "Green trees along Hungarian waterfront" },
+];
 
-          <SearchBar layout="row" />
+function HeroCarousel() {
+  const [current, setCurrent] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+  const timerRef = React.useRef(null);
+
+  const goTo = React.useCallback((idx) => {
+    setCurrent((idx + HERO_SLIDES.length) % HERO_SLIDES.length);
+  }, []);
+
+  React.useEffect(() => {
+    if (paused) return;
+    timerRef.current = setInterval(() => goTo(current + 1), 6000);
+    return () => clearInterval(timerRef.current);
+  }, [current, paused, goTo]);
+
+  return (
+    <section
+      className="hero-carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 540,
+        overflow: "hidden",
+        background: "var(--ink)",
+      }}
+    >
+      {/* Slides */}
+      {HERO_SLIDES.map((slide, i) => (
+        <div key={i} style={{
+          position: "absolute", inset: 0,
+          opacity: i === current ? 1 : 0,
+          transition: "opacity 1s ease-in-out",
+          willChange: "opacity",
+        }}>
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center",
+              display: "block",
+            }}
+          />
+        </div>
+      ))}
+
+      {/* Dark overlay for text readability */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(180deg, rgba(20,30,28,0.25) 0%, rgba(20,30,28,0.50) 100%)",
+        pointerEvents: "none",
+      }}/>
+
+      {/* Content overlay */}
+      <div style={{
+        position: "absolute", inset: 0,
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        padding: "0 32px",
+        zIndex: 2,
+      }}>
+        <div className="mono" style={{
+          color: "rgba(255,255,255,0.80)",
+          marginBottom: 14,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span style={{
+            display: "inline-block", width: 6, height: 6, borderRadius: 999,
+            background: "var(--accent)",
+          }}/>
+          Live · 2,461 listings across Hungary
         </div>
 
-        {/* RIGHT — quick search points (banner of "search points") */}
-        <SearchPoints />
+        <h1 style={{
+          fontFamily: "var(--serif)",
+          fontWeight: 400,
+          fontSize: 52,
+          lineHeight: 1.05,
+          margin: 0,
+          letterSpacing: "-0.018em",
+          color: "white",
+          textAlign: "center",
+          textWrap: "balance",
+          textShadow: "0 2px 16px rgba(20,30,28,0.30)",
+        }}>
+          A home in Hungary,<br/>
+          <em style={{ fontStyle: "italic", color: "var(--accent)" }}>for the life you want to live.</em>
+        </h1>
+
+        <p style={{
+          margin: "16px 0 28px",
+          fontSize: 16,
+          lineHeight: 1.55,
+          color: "rgba(255,255,255,0.85)",
+          maxWidth: 540,
+          textAlign: "center",
+        }}>
+          From a stone cottage by Lake Balaton to a modern villa above the
+          Danube — find homes hand-picked for character, light, and place.
+        </p>
+
+        {/* Floating search bar */}
+        <div className="hero-search-wrap" style={{
+          width: "100%",
+          maxWidth: 780,
+        }}>
+          <SearchBar layout="row" />
+        </div>
       </div>
+
+      {/* Slide indicators */}
+      <div style={{
+        position: "absolute", bottom: 20, left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex", gap: 8, zIndex: 3,
+      }}>
+        {HERO_SLIDES.map((_, i) => (
+          <button key={i} onClick={() => goTo(i)} style={{
+            appearance: "none", border: "none",
+            width: i === current ? 28 : 8, height: 8,
+            borderRadius: 999,
+            background: i === current ? "white" : "rgba(255,255,255,0.50)",
+            cursor: "pointer",
+            transition: "width 0.3s ease, background 0.3s ease",
+            padding: 0,
+          }}/>
+        ))}
+      </div>
+
+      {/* Prev / Next arrows */}
+      {[
+        { dir: -1, pos: "left" },
+        { dir: 1, pos: "right" },
+      ].map(({ dir, pos }) => (
+        <button key={pos} onClick={() => goTo(current + dir)} style={{
+          position: "absolute", top: "50%", [pos]: 16,
+          transform: "translateY(-50%)",
+          appearance: "none", border: "none",
+          width: 40, height: 40, borderRadius: 999,
+          background: "rgba(255,255,255,0.18)",
+          backdropFilter: "blur(8px)",
+          color: "white",
+          display: "grid", placeItems: "center",
+          cursor: "pointer",
+          zIndex: 3,
+          transition: "background 0.2s",
+        }}
+        onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.35)"}
+        onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.18)"}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            {dir === -1
+              ? <path d="M15 18l-6-6 6-6"/>
+              : <path d="M9 18l6-6-6-6"/>
+            }
+          </svg>
+        </button>
+      ))}
     </section>
   );
 }
@@ -863,31 +970,154 @@ function SectionHead({ kicker, title, subtitle, cta }) {
 }
 
 /* ============================================================
-   FOOTER
+   FOOTER — warm, trustworthy, mission-driven
    ============================================================ */
 function Footer() {
   return (
-    <footer style={{
-      borderTop: "1px solid var(--line)",
-      marginTop: 24,
-    }}>
+    <footer style={{ marginTop: 24 }}>
+      {/* Mission block — warm green background */}
       <div style={{
-        maxWidth: 1320,
-        margin: "0 auto",
-        padding: "22px 32px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 16,
-        color: "var(--muted)",
-        fontSize: 12,
+        background: "var(--ink)",
+        color: "var(--bg)",
+        position: "relative",
+        overflow: "hidden",
       }}>
-        <div className="mono">© 2026 Otthon · Budapest</div>
-        <div style={{ display: "flex", gap: 20 }}>
-          <a style={{ cursor: "pointer" }}>About</a>
-          <a style={{ cursor: "pointer" }}>For agents</a>
-          <a style={{ cursor: "pointer" }}>Privacy</a>
-          <a style={{ cursor: "pointer" }}>Contact</a>
+        {/* Subtle accent glow */}
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(900px 300px at 20% 100%, color-mix(in oklch, var(--accent) 18%, transparent), transparent 60%)",
+          pointerEvents: "none",
+        }}/>
+
+        <div className="footer-top" style={{
+          maxWidth: 1320,
+          margin: "0 auto",
+          padding: "56px 32px 48px",
+          position: "relative",
+          display: "grid",
+          gridTemplateColumns: "1.4fr 1fr 1fr",
+          gap: 48,
+        }}>
+          {/* Mission column */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <img src="uploads/logo-otia.svg" alt="Otia" style={{
+                width: 32, height: 32,
+                filter: "brightness(0) invert(1)",
+              }}/>
+              <span style={{
+                fontFamily: "var(--serif)", fontSize: 26, lineHeight: 1,
+                letterSpacing: "-0.005em",
+              }}>Otia</span>
+            </div>
+            <p style={{
+              margin: "0 0 20px",
+              fontSize: 15, lineHeight: 1.6,
+              color: "color-mix(in oklch, var(--bg) 78%, transparent)",
+              maxWidth: 380,
+            }}>
+              We help international buyers find their home in Hungary. From first search to signed contract — in your language, at your pace.
+            </p>
+
+            {/* Trust badges */}
+            <div style={{
+              display: "flex", gap: 20, marginTop: 20,
+              paddingTop: 20,
+              borderTop: "1px solid color-mix(in oklch, var(--bg) 14%, transparent)",
+            }}>
+              {[
+                { v: "12 yrs", l: "On the ground" },
+                { v: "240+",   l: "Homes sold" },
+                { v: "4",      l: "Languages" },
+              ].map((s, i) => (
+                <div key={i}>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 22, lineHeight: 1 }}>{s.v}</div>
+                  <div className="mono" style={{ marginTop: 4, color: "color-mix(in oklch, var(--bg) 55%, transparent)" }}>{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation column */}
+          <div>
+            <div className="mono" style={{ marginBottom: 16, color: "color-mix(in oklch, var(--bg) 55%, transparent)" }}>Explore</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {["Buy property", "Rent property", "New build", "Inspiration", "Essential Collection", "Signature Collection", "Prestige Collection"].map(link => (
+                <a key={link} style={{
+                  fontSize: 14,
+                  color: "color-mix(in oklch, var(--bg) 80%, transparent)",
+                  cursor: "pointer",
+                  transition: "color 0.15s",
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "var(--bg)"}
+                onMouseLeave={e => e.currentTarget.style.color = "color-mix(in oklch, var(--bg) 80%, transparent)"}
+                >{link}</a>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact & languages column */}
+          <div>
+            <div className="mono" style={{ marginBottom: 16, color: "color-mix(in oklch, var(--bg) 55%, transparent)" }}>Contact</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14 }}>
+              <span style={{ color: "color-mix(in oklch, var(--bg) 80%, transparent)" }}>info@otia.hu</span>
+              <span style={{ color: "color-mix(in oklch, var(--bg) 80%, transparent)" }}>+36 1 234 5678</span>
+              <span style={{ color: "color-mix(in oklch, var(--bg) 80%, transparent)" }}>Budapest, Hungary</span>
+            </div>
+
+            <div className="mono" style={{ marginTop: 28, marginBottom: 12, color: "color-mix(in oklch, var(--bg) 55%, transparent)" }}>We speak your language</div>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              {["English", "Nederlands", "Deutsch", "Magyar"].map(lang => (
+                <span key={lang} style={{
+                  fontSize: 12, fontWeight: 500,
+                  padding: "5px 12px",
+                  borderRadius: 999,
+                  border: "1px solid color-mix(in oklch, var(--bg) 20%, transparent)",
+                  color: "color-mix(in oklch, var(--bg) 75%, transparent)",
+                }}>
+                  {lang}
+                </span>
+              ))}
+            </div>
+
+            <a style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              marginTop: 24,
+              padding: "10px 20px",
+              background: "var(--accent)",
+              color: "white",
+              borderRadius: 999,
+              fontSize: 14, fontWeight: 600,
+              cursor: "pointer",
+            }}>
+              Book a free call
+              <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 2l5 4-5 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar — copyright */}
+      <div style={{
+        background: "color-mix(in oklch, var(--ink) 92%, black)",
+      }}>
+        <div className="footer-bottom" style={{
+          maxWidth: 1320,
+          margin: "0 auto",
+          padding: "16px 32px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+          color: "color-mix(in oklch, var(--bg) 45%, transparent)",
+          fontSize: 12,
+        }}>
+          <div className="mono">© 2026 Otia · Budapest, Hungary</div>
+          <div style={{ display: "flex", gap: 20 }}>
+            <a style={{ cursor: "pointer" }}>Privacy</a>
+            <a style={{ cursor: "pointer" }}>Terms</a>
+            <a style={{ cursor: "pointer" }}>Cookies</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -905,7 +1135,7 @@ function App() {
   return (
     <div data-screen-label="01 Homepage">
       <Header brand={t.brandName} />
-      <SearchBanner />
+      <HeroCarousel />
       <FeaturedSection />
       <CollectionsSection />
       {t.showRegions && <RegionsSection />}

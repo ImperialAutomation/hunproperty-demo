@@ -125,19 +125,50 @@
 }
 
 /* ============================================================
-   HOMEPAGE — SearchBanner
+   HOMEPAGE — Hero Carousel
    ============================================================ */
 
 @media (max-width: 768px) {
-  /* SearchBanner: 2-col grid → 1-col stack */
-  [data-screen-label="01 Homepage"] section:first-of-type > div:first-child {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
+  .hero-carousel {
+    height: 480px !important;
   }
+  .hero-carousel h1 {
+    font-size: clamp(28px, 7vw, 42px) !important;
+  }
+  /* Search bar: force stacked layout inside hero */
+  .hero-search-wrap .search-bar-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+  .hero-search-wrap .search-bar-wrap > div {
+    border-right: none !important;
+  }
+  .hero-search-wrap .search-bar-wrap > button:last-of-type {
+    grid-column: 1 / -1 !important;
+  }
+  /* Hide filter dropdowns on mobile hero — just show location + button */
+  .hero-search-wrap .search-bar-wrap > div:not(:first-child) {
+    display: none !important;
+  }
+  /* Hide quick chips in hero on mobile */
+  .hero-search-wrap > div > div:last-child {
+    display: none !important;
+  }
+  /* Hide carousel arrows on mobile (use dots instead) */
+  .hero-carousel > button {
+    display: none !important;
+  }
+}
 
-  /* SearchPoints panel — full width */
-  [data-screen-label="01 Homepage"] section:first-of-type > div:first-child > div:last-child {
-    order: 2;
+/* Hero search: white-on-dark adjustments */
+.hero-search-wrap .search-bar-wrap {
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 480px) {
+  .hero-carousel {
+    height: 420px !important;
   }
 }
 
@@ -234,10 +265,21 @@
    HOMEPAGE — Footer: stack on mobile
    ============================================================ */
 
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding: 40px 16px 36px !important;
+  }
+  .footer-bottom {
+    padding: 14px 16px !important;
+  }
+}
+
 @media (max-width: 480px) {
-  footer > div {
+  .footer-bottom {
     flex-direction: column !important;
-    gap: 12px !important;
+    gap: 8px !important;
     align-items: flex-start !important;
   }
 }

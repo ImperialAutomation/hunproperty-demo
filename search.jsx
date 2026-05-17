@@ -40,9 +40,9 @@ function SearchBar({ layout = "row" }) {
             style={{
               appearance: "none",
               border: "1px solid",
-              borderColor: mode === opt.id ? "var(--ink)" : "transparent",
-              background: mode === opt.id ? "var(--ink)" : "transparent",
-              color: mode === opt.id ? "var(--bg)" : "var(--ink)",
+              borderColor: mode === opt.id ? "white" : "rgba(255,255,255,0.4)",
+              background: mode === opt.id ? "white" : "rgba(255,255,255,0.15)",
+              color: mode === opt.id ? "var(--ink)" : "white",
               padding: "8px 16px",
               borderRadius: 999,
               fontSize: 13,
@@ -205,22 +205,23 @@ function SearchBar({ layout = "row" }) {
       </div>
 
       {/* Quick chips */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
-        <span className="mono" style={{ alignSelf: "center", marginRight: 4 }}>Quick:</span>
+      <div className="quick-chips" style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
+        <span className="mono" style={{ alignSelf: "center", marginRight: 4, color: "rgba(255,255,255,0.7)" }}>Quick:</span>
         {["Balaton villas", "Budapest district V", "Under €100k", "Vineyards", "New build"].map(c => (
           <button key={c} style={{
             appearance: "none",
-            background: "transparent",
-            border: "1px solid var(--line)",
+            background: "rgba(255,255,255,0.15)",
+            backdropFilter: "blur(6px)",
+            border: "1px solid rgba(255,255,255,0.4)",
             borderRadius: 999,
             padding: "5px 12px",
             fontSize: 12.5,
-            color: "var(--ink-2)",
+            color: "white",
             cursor: "pointer",
-            transition: "background 0.12s, border-color 0.12s",
+            transition: "background 0.15s, color 0.15s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = "var(--surface)"; e.currentTarget.style.borderColor = "var(--line-strong)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "var(--line)"; }}
+          onMouseEnter={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "var(--ink)"; e.currentTarget.style.borderColor = "white"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
           >
             {c}
           </button>
